@@ -27,7 +27,7 @@ const BicycleCard = ({ bike, index }) => {
   };
 
   const sendWhatsApp = () => {
-    const phoneNumber = "99450XXXXXXX"; 
+    const phoneNumber = "994507215768"; 
     const message = `Salam, mən bu velosipedi istəyirəm: ${bike.model}`;
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
   };
