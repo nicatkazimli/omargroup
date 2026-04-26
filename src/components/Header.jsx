@@ -69,7 +69,7 @@ const navLinks = [
         </div>
 
         <div className="hero-content">
-          <p className="role slide-left">Velosiped Dünyasının Ünvanı</p>
+          <p className="role slide-left">Peşəkar və Operativ Rent Sektoru</p>
           <h1 className="main-title">
             <span className="char slide-up">OMAR</span> <br /> 
             <span className="char slide-right">GROUP</span>
