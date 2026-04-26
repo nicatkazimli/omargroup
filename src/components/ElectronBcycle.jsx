@@ -42,31 +42,32 @@ const BicycleCard = ({ bike, index }) => {
   };
 
 const sendWhatsApp = () => {
-    const phoneNumber = "994507215768";
-    
-    // Saytın ana linki
-    const siteUrl = "https://omargroup.vercel.app";
-    
-    // Hal-hazırda görünən şəklin yolu (məsələn: /ebike7.jpg)
-    const currentImagePath = bike.images[currentImg];
-    
-    // Şəklin TAM linkini yaradırıq. 
-    // Bu link WhatsApp-a gedəndə WhatsApp o şəkli ordan götürüb mesajda göstərəcək.
-    const fullImageUrl = currentImagePath.startsWith('http') 
-        ? currentImagePath 
-        : `${siteUrl}${currentImagePath.startsWith('/') ? '' : '/'}${currentImagePath}`;
+  const phoneNumber = "994507215768";
+  
+  // Bu sətir saytın o anki real linkini (hansı vercel linkidirsə onu) avtomatik götürür
+  const siteUrl = window.location.origin;
+  
+  const currentImagePath = bike.images[currentImg];
+  
+  // Şəklin linkini tam URL halına salırıq
+  const fullImageUrl = currentImagePath.startsWith('http') 
+      ? currentImagePath 
+      : `${siteUrl}${currentImagePath.startsWith('/') ? '' : '/'}${currentImagePath}`;
 
-    const message = `*YENİ SİFARİŞ SORĞUSU* 🚲\n` +
-                    `_________________________\n\n` +
-                    `👋 Salam, mən bu velosipedi kirayə götürmək istəyirəm:\n\n` +
-                    `📍 *Model:* ${bike.model}\n` +
-                    `💰 *Şərtlər:* ${bike.desc}\n\n` +
-                    `🆔 *Məhsul ID:* #${bike.id}\n` +
-                    `_________________________\n\n` +
-                    `🖼️ *Məhsulun fotosu:* ${fullImageUrl}`;
+  // Mesaj formatı (Şəklin linki ən sonda olmalıdır ki, WhatsApp preview tuta bilsin)
+  const message = `*YENİ SİFARİŞ SORĞUSU* 🚲\n` +
+                  `_________________________\n\n` +
+                  `👋 Salam, mən bu velosipedi kirayə götürmək istəyirəm:\n\n` +
+                  `📍 *Model:* ${bike.model}\n` +
+                  `💰 *Şərtlər:* ${bike.desc}\n\n` +
+                  `🆔 *Məhsul ID:* #${bike.id}\n` +
+                  `_________________________\n\n` +
+                  `🖼️ *Məhsulun fotosu:* ${fullImageUrl}`;
 
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-  };
+  window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+};
+
+
   return (
     <div className="bike-card" style={{ animationDelay: `${index * 0.1}s` }}>
       <div className="card-image-box">
