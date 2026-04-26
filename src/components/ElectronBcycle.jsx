@@ -41,23 +41,25 @@ const BicycleCard = ({ bike, index }) => {
     setCurrentImg((prev) => (prev === 0 ? bike.images.length - 1 : prev - 1));
   };
 
- const sendWhatsApp = () => {
+const sendWhatsApp = () => {
     const phoneNumber = "994507215768";
     
-    // Şəklin tam URL-ni yaradırıq (WhatsApp-da şəklin görünməsi üçün)
-    const siteUrl = window.location.origin;
+    // Saytın ana linki
+    const siteUrl = "https://omargroup.vercel.app";
+    
+    // Hal-hazırda görünən şəklin yolu (məsələn: /ebike7.jpg)
     const currentImagePath = bike.images[currentImg];
+    
+    // Şəklin TAM linkini yaradırıq. 
+    // Bu link WhatsApp-a gedəndə WhatsApp o şəkli ordan götürüb mesajda göstərəcək.
     const fullImageUrl = currentImagePath.startsWith('http') 
         ? currentImagePath 
-        : `${siteUrl}${currentImagePath}`;
+        : `${siteUrl}${currentImagePath.startsWith('/') ? '' : '/'}${currentImagePath}`;
 
-    // Rəsmi və aydın mesaj formatı
     const message = `*YENİ SİFARİŞ SORĞUSU* 🚲\n` +
                     `_________________________\n\n` +
                     `👋 Salam, mən bu velosipedi kirayə götürmək istəyirəm:\n\n` +
                     `📍 *Model:* ${bike.model}\n` +
-                    `🔋 *Məsafə:* ${bike.km}\n` +
-                    `🚀 *Maksimal Sürət:* ${bike.speed}\n` +
                     `💰 *Şərtlər:* ${bike.desc}\n\n` +
                     `🆔 *Məhsul ID:* #${bike.id}\n` +
                     `_________________________\n\n` +
@@ -65,7 +67,6 @@ const BicycleCard = ({ bike, index }) => {
 
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
   };
-
   return (
     <div className="bike-card" style={{ animationDelay: `${index * 0.1}s` }}>
       <div className="card-image-box">
