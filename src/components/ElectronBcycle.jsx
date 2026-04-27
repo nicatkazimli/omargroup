@@ -42,7 +42,7 @@ const BicycleCard = ({ bike, index }) => {
   };
 
 const sendWhatsApp = () => {
-  const phoneNumber = "994507215768";
+  const phoneNumber = "+994509998281";
   
   // Bu sətir saytın o anki real linkini (hansı vercel linkidirsə onu) avtomatik götürür
   const siteUrl = window.location.origin;

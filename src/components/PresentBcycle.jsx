@@ -7,7 +7,7 @@ const bicycles = [
   { id: 2, model: "Bike2", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike3.jpg", "/sadebike4.jpg" ] }, 
   { id: 3, model: "Bike3", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike5.jpg", "/sadebike6.jpg" ] }, 
   { id: 4, model: "Bike4", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike7.jpg", "/sadebike8.jpg" ] }, 
-  { id: 5, model: "Bike5", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike1.jpg", "/sadebike2.jpg" ] }, 
+  { id: 5, model: "Bike5", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike9.jpg", "/sadebike10.jpg" ] }, 
   { id: 6, model: "Bike6", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike1.jpg", "/sadebike2.jpg" ] }, 
   { id: 7, model: "Bike7", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike1.jpg", "/sadebike2.jpg" ] }, 
   { id: 8, model: "Bike8", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike1.jpg", "/sadebike2.jpg" ] }, 
@@ -31,7 +31,7 @@ const BicycleCard = ({ bike, index }) => {
   };
 
 const sendWhatsApp = () => {
-  const phoneNumber = "994507215768";
+  const phoneNumber = "+994509998281";
   
   // Bu sətir saytın o anki real linkini (hansı vercel linkidirsə onu) avtomatik götürür
   const siteUrl = window.location.origin;

@@ -1,0 +1,353 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+
+.wolt-full-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #050505;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  padding: 60px 5%;
+  display: flex;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.wolt-main-grid {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Video Sahəsi - Hündürlük artırıldı */
+.wolt-hero-video {
+  width: 100%;
+}
+
+.video-wrapper-premium {
+  position: relative;
+  border-radius: 40px;
+  background: #111;
+  padding: 8px;
+  border: 1px solid rgba(0, 194, 232, 0.2);
+  box-shadow: 0 40px 100px rgba(0, 194, 232, 0.1);
+}
+
+.wolt-video-player {
+  width: 100%;
+  height: 700px; /* Video hündürlüyü artırıldı */
+  object-fit: cover;
+  border-radius: 32px;
+  display: block;
+}
+
+.video-corner-badge {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Sağ Tərəf */
+.wolt-content-side {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.wolt-partner-tag {
+  background: rgba(0, 194, 232, 0.1);
+  color: #00c2e8;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+}
+
+.wolt-hero-title {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #00c2e8, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.wolt-official-text p {
+  color: #999;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.wolt-official-text strong {
+  color: #00c2e8;
+}
+
+/* Kreativ Endirim Kartı */
+.wolt-offer-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 30px;
+  padding: 30px;
+  position: relative;
+}
+
+.offer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.price-label {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.price-numbers {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+}
+
+.price-old {
+  font-size: 22px;
+  text-decoration: line-through;
+  color: #444;
+  font-weight: 700;
+}
+
+.price-new {
+  font-size: 42px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(0, 194, 232, 0.2);
+}
+
+.offer-divider {
+  width: 1px;
+  height: 50px;
+  background: rgba(255,255,255,0.1);
+}
+
+.offer-promo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.promo-icon {
+  color: #ff4d4d;
+  width: 32px;
+  height: 32px;
+}
+
+.promo-text strong {
+  display: block;
+  font-size: 16px;
+  color: #fff;
+}
+
+.promo-text span {
+  font-size: 13px;
+  color: #666;
+}
+
+/* Footer Action (İkonlar + Button yan-yana) */
+.wolt-footer-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.03);
+  padding: 20px 30px;
+  border-radius: 25px;
+  margin-top: 10px;
+}
+
+.features-side {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mini-feat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #bbb;
+}
+
+.mini-feat svg { color: #00c2e8; }
+
+.wolt-cta-btn {
+  background: #25d366;
+  color: white;
+  padding: 18px 35px;
+  border-radius: 18px;
+  border: none;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.wolt-cta-btn:hover {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+}
+
+.footer-note {
+  font-size: 13px;
+  color: #555;
+  font-style: italic;
+}
+
+/* MOBİL VERSİYA */
+@media (max-width: 968px) {
+  .wolt-main-grid {
+    grid-template-columns: 1fr;
+    gap: 30px; /* Mobildə elementlər arası məsafəni bir az azaltdıq */
+  }
+
+  .wolt-video-player {
+    height: 400px;
+  }
+
+  .offer-inner {
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+  }
+
+  .offer-divider {
+    width: 80%;
+    height: 1px;
+    margin: 0 auto; /* Xətti mərkəzləyir */
+  }
+
+  .wolt-footer-action {
+    flex-direction: column;
+    gap: 25px;
+    padding: 30px;
+    align-items: center; /* İkonlar olan hissəni də mərkəzləyir */
+  }
+
+  .features-side {
+    align-items: center; /* İkon siyahısını mərkəzə yığır */
+    text-align: center;
+  }
+
+  .wolt-cta-btn {
+    width: 100%;
+    display: flex;         /* Flexbox aktiv edilir */
+    justify-content: center; /* Üfüqi olaraq mərkəzləyir */
+    align-items: center;     /* Şaquli olaraq mərkəzləyir */
+    gap: 12px;
+    text-align: center;
+  }
+}
+.wolt-hero-title {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 900;
+  line-height: 1.1;
+  color: white;
+  position: relative;
+  display: inline-block;
+}
+
+.gradient-text {
+  position: relative;
+  /* Müasir Neon Rəngləri */
+  background: linear-gradient(
+    90deg, 
+    #00c2e8, 
+    #fff, 
+    #00c2e8
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Yazının içindəki işıq hərəkəti */
+  animation: shineText 4s linear infinite;
+  display: inline-block;
+}
+
+/* 🔥 Kreativ Hərəkətli Underline */
+.gradient-text::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00c2e8, transparent);
+  border-radius: 2px;
+  /* Neon parıltısı */
+  box-shadow: 0 0 15px rgba(0, 194, 232, 0.8);
+  /* Alt xəttin sonsuz hərəkəti */
+  animation: lineFlow 3s ease-in-out infinite;
+}
+
+/* Yazı üçün animasiya */
+@keyframes shineText {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Alt xətt üçün animasiya */
+@keyframes lineFlow {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+    opacity: 0;
+  }
+  50% {
+    transform: scaleX(1);
+    transform-origin: left;
+    opacity: 1;
+  }
+  51% {
+    transform: scaleX(1);
+    transform-origin: right;
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(0);
+    transform-origin: right;
+    opacity: 0;
+  }
+}
+
+/* Hover zamanı başlığın titrəməsi (Yüngül neon artımı) */
+.wolt-hero-title:hover .gradient-text {
+  filter: drop-shadow(0 0 10px rgba(0, 194, 232, 0.4));
+  transition: 0.3s ease;
+}
