@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Zap, Navigation, Gauge, MessageCircle } from 'lucide-react';
-import "./ElectronBcycle.css";
+import { ChevronLeft, ChevronRight, Navigation, Gauge, Zap, ShieldCheck, Smile, MessageCircle,Waves } from 'lucide-react';
+import "./PresentBcycle.css";
 
 const bicycles = [
-  { id: 1, model: "Storm Rider E-1", km: "120 km", speed: "55 km/h", desc: "Şəhər daxili uzun məsafələr üçün erqonomik dizayn.", images: ["https://picsum.photos/id/146/600/400", "https://picsum.photos/id/147/600/400", "https://picsum.photos/id/149/600/400"] },
-  { id: 2, model: "Mountain Peak Pro", km: "85 km", speed: "40 km/h", desc: "Dağ yolları və çətin relyeflər üçün gücləndirilmiş asqı.", images: ["https://picsum.photos/id/151/600/400", "https://picsum.photos/id/152/600/400", "https://picsum.photos/id/153/600/400"] },
-  { id: 3, model: "Urban Glide S2", km: "60 km", speed: "30 km/h", desc: "Minimalist stil və yüngül korpusu ilə işə getmək üçün ideal.", images: ["https://picsum.photos/id/154/600/400", "https://picsum.photos/id/155/600/400", "https://picsum.photos/id/156/600/400"] },
-  { id: 4, model: "Thunder Bolt X", km: "150 km", speed: "65 km/h", desc: "Yüksək tutumlu batareya və sürətli şarj dəstəyi.", images: ["https://picsum.photos/id/157/600/400", "https://picsum.photos/id/158/600/400", "https://picsum.photos/id/159/600/400"] },
-  { id: 5, model: "Eco Leaf Hybrid", km: "90 km", speed: "35 km/h", desc: "Tamamilə ekoloji materiallardan hazırlanmış premium model.", images: ["https://picsum.photos/id/160/600/400", "https://picsum.photos/id/161/600/400", "https://picsum.photos/id/162/600/400"] },
-  { id: 6, model: "Night Fury Black", km: "110 km", speed: "50 km/h", desc: "Mat qara örtüklü, gecə sürüşü üçün xüsusi LED sistemli.", images: ["https://picsum.photos/id/163/600/400", "https://picsum.photos/id/164/600/400", "https://picsum.photos/id/165/600/400"] },
-  { id: 7, model: "Desert Sand 4x4", km: "75 km", speed: "45 km/h", desc: "Qum və yumşaq torpaq üçün enli təkərli model.", images: ["https://picsum.photos/id/166/600/400", "https://picsum.photos/id/167/600/400", "https://picsum.photos/id/168/600/400"] },
-  { id: 8, model: "Silver Arrow", km: "130 km", speed: "60 km/h", desc: "Aerodinamik korpus və maksimal aerodinamika.", images: ["https://picsum.photos/id/169/600/400", "https://picsum.photos/id/170/600/400", "https://picsum.photos/id/171/600/400"] },
+  { id: 1, model: "Bike1", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike1.jpg", "/sadebike2.jpg" ] },
+  { id: 2, model: "Bike2", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike3.jpg", "/sadebike4.jpg" ] }, 
+  { id: 3, model: "Bike3", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike5.jpg", "/sadebike6.jpg" ] }, 
+  { id: 4, model: "Bike4", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike7.jpg", "/sadebike8.jpg" ] }, 
+  { id: 5, model: "Bike5", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike1.jpg", "/sadebike2.jpg" ] }, 
+  { id: 6, model: "Bike6", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike1.jpg", "/sadebike2.jpg" ] }, 
+  { id: 7, model: "Bike7", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike1.jpg", "/sadebike2.jpg" ] }, 
+  { id: 8, model: "Bike8", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike1.jpg", "/sadebike2.jpg" ] }, 
+  { id: 9, model: "Bike9", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike1.jpg", "/sadebike2.jpg" ] }, 
+  { id: 10, model: "Bike10", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike1.jpg", "/sadebike2.jpg" ] }, 
+  { id: 11, model: "Bike11", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike1.jpg", "/sadebike2.jpg" ] }, 
+  { id: 12, model: "Bike12", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike1.jpg", "/sadebike2.jpg" ] }, 
 ];
 
 const BicycleCard = ({ bike, index }) => {
@@ -26,15 +30,35 @@ const BicycleCard = ({ bike, index }) => {
     setCurrentImg((prev) => (prev === 0 ? bike.images.length - 1 : prev - 1));
   };
 
-  const sendWhatsApp = () => {
-    const phoneNumber = "994507215768"; 
-    const message = `Salam, mən bu velosipedi istəyirəm: ${bike.model}`;
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-  };
+const sendWhatsApp = () => {
+  const phoneNumber = "994507215768";
+  
+  // Bu sətir saytın o anki real linkini (hansı vercel linkidirsə onu) avtomatik götürür
+  const siteUrl = window.location.origin;
+  
+  const currentImagePath = bike.images[currentImg];
+  
+  // Şəklin linkini tam URL halına salırıq
+  const fullImageUrl = currentImagePath.startsWith('http') 
+      ? currentImagePath 
+      : `${siteUrl}${currentImagePath.startsWith('/') ? '' : '/'}${currentImagePath}`;
+
+  // Mesaj formatı (Şəklin linki ən sonda olmalıdır ki, WhatsApp preview tuta bilsin)
+  const message = `*YENİ SİFARİŞ SORĞUSU* 🚲\n` +
+                  `_________________________\n\n` +
+                  `👋 Salam, mən bu velosipedi kirayə götürmək istəyirəm:\n\n` +
+                  `📍 *Model:* ${bike.model}\n` +
+                  `💰 *Şərtlər:* ${bike.desc}\n\n` +
+                  `🆔 *Məhsul ID:* #${bike.id}\n` +
+                  `_________________________\n\n` +
+                  `🖼️ *Məhsulun fotosu:* ${fullImageUrl}`;
+
+  window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+};
+
 
   return (
     <div className="bike-card" style={{ animationDelay: `${index * 0.1}s` }}>
-      {/* 1. Image (Top Center) */}
       <div className="card-image-box">
         <img src={bike.images[currentImg]} alt={bike.model} />
       </div>
@@ -45,23 +69,33 @@ const BicycleCard = ({ bike, index }) => {
         <button onClick={nextImg} className="arrow-btn"><ChevronRight size={18} /></button>
       </div>
 
-      {/* 3. Text Content */}
       <div className="card-body">
         <h3 className="bike-title">{bike.model}</h3>
         <p className="bike-desc">{bike.desc}</p>
         
-        <div className="bike-specs">
-          <div className="spec">
-            <Navigation size={14} /> <span>{bike.km}</span>
-          </div>
-          <div className="spec">
-            <Gauge size={14} /> <span>{bike.speed}</span>
-          </div>
-        </div>
+
+<div className="bike-vibe-tags">
+  <div className="vibe-tag">
+    <Zap size={14} className="vibe-icon" />
+    <span>Yüngül</span> 
+  </div>
+  <div className="vibe-tag">
+    <ShieldCheck size={14} className="vibe-icon" />
+    <span>Davamlı</span>
+  </div>
+  <div className="vibe-tag">
+    <Smile size={14} className="vibe-icon" />
+    <span>Rahat</span>
+  </div>
+  <div className="vibe-tag">
+  <Waves size={14} className="vibe-icon" />
+  <span>Modern</span>
+</div>
+</div>
 
         <button onClick={sendWhatsApp} className="wp-button">
           <MessageCircle size={18} />
-          <span>MÜRACİƏT ET</span>
+          <span className='tex'>MÜRACİƏT ET</span>
         </button>
       </div>
     </div>
@@ -70,7 +104,7 @@ const BicycleCard = ({ bike, index }) => {
 
 const PresentBcycle = () => {
   return (
-    <section  className="bicycle-section">
+    <section className="bicycle-section">
       <div className="container">
         <h2 className="section-title">SADƏ <span>VELOSİPEDLƏR</span></h2>
         <div className="bicycle-grid">

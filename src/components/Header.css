@@ -28,7 +28,7 @@ body {
 .hero {
   height: 100vh;
   width: 100%;
-  background: radial-gradient(circle at top right, #0a1520, #050505) !important;
+  background: radial-gradient(circle at top right, #184067, #5f1818) !important;
   position: relative;
   overflow: hidden;
 }
@@ -658,7 +658,7 @@ body {
 .hero {
   height: 100vh;
   width: 100%;
-  background: radial-gradient(circle at top right, #0a1520, #050505);
+   background: radial-gradient(circle at top right, #051524, #13051e) !important;
   position: relative;
   overflow: hidden;
 }
