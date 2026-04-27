@@ -230,77 +230,93 @@
 }
 
 /* MOBİL VERSİYA */
+/* --- MOBİL ÜÇÜN XÜSUSİ DÜZƏLİŞLƏR --- */
 @media (max-width: 768px) {
   .wolt-full-page {
-    padding: 40px 20px; /* Kenar boşluqları azaltdıq ki, mətnə yer qalsın */
+    padding: 30px 15px;
   }
 
   .wolt-main-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 35px;
   }
 
-  /* Başlığın mobildə kəsilməməsi və geniş görünməsi üçün */
+  /* 1. Başlığın nizamlanması */
   .wolt-hero-title {
-    font-size: 32px; /* Ölçünü bir az optimallaşdırdıq */
-    width: 100%;
+    display: flex;
+    flex-direction: column; /* Sözləri alt-alta salır */
+    align-items: center;
     text-align: center;
-    display: block; /* Inline-block-dan çıxartdıq ki, tam eni tutsun */
+    font-size: 24px; /* "Wolt Kuryer" hissəsi daha kiçik */
+    width: 100%;
+    line-height: 1.3;
   }
 
   .gradient-text {
-    display: block; /* Alt sətirə keçidi daha səliqəli edir */
-    width: 100%;
+    font-size: 32px; /* "Xidmətinə Qeydiyyat" hissəsi daha böyük */
+    margin-top: 5px;
+    display: block;
+    width: fit-content;
   }
 
-  /* 🔥 Mətnlərin sona qədər uzanması (Sənin istədiyin hissə) */
+  /* 2. Mətnlərin tam sona qədər uzanması (Justify) */
   .wolt-official-text p {
-    text-align: justify; /* Mətnləri sağ-sol kənarlara yapışdırır */
-    hyphens: auto;       /* Lazım gələrsə sözləri bölür */
+    text-align: justify; /* Cümlələr qırılmır, sona qədər yapışır */
+    text-justify: inter-word;
     width: 100%;
     font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 20px;
+    line-height: 1.7;
+    color: #bbb;
+    margin-bottom: 15px;
   }
 
+  /* 3. Omar Group sözünün göy rəngi (Mətnin içində) */
+  .wolt-official-text strong, 
+  .omar-brand-color {
+    color: #00c2e8 !important;
+    font-weight: 800;
+  }
+
+  /* 4. Video və Kart nizamı */
   .wolt-video-player {
-    height: 350px; /* Mobildə hündürlük balansı */
+    height: 380px;
   }
 
-  /* Endirim kartı mobildə tam en */
   .wolt-offer-card {
-    width: 100%;
     padding: 20px;
+    margin-top: -10px; /* Kompaniya hissəsini yuxarı qaldırır */
   }
 
   .offer-inner {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
   }
 
-  /* Düymə və Footer hissə */
+  .offer-divider {
+    width: 60%;
+    height: 1px;
+    margin: 0 auto;
+  }
+
+  /* 5. Footer və Balaca VP düyməsi */
   .wolt-footer-action {
     flex-direction: column;
-    width: 100%;
     gap: 20px;
-    padding: 25px 15px;
-  }
-
-  .features-side {
-    width: 100%;
+    padding: 20px;
     align-items: center;
   }
 
-  .wolt-cta-btn {
-    width: 100%;
-    justify-content: center; /* İkon və mətni mərkəzləyir */
-    padding: 18px;
-    font-size: 14px;
-  }
-  
-  .footer-note {
+  .features-side {
+    align-items: center;
     text-align: center;
-    width: 100%;
+  }
+
+  .wolt-cta-btn {
+    width: 100% !important; /* Mobildə rahatlıq üçün tam en */
+    max-width: 280px;      /* Amma çox da böyüməsin, kompakt qalsın */
+    padding: 14px 20px;
+    font-size: 13px;
+    justify-content: center;
   }
 }
 .wolt-hero-title {
@@ -380,4 +396,51 @@
 .wolt-hero-title:hover .gradient-text {
   filter: drop-shadow(0 0 10px rgba(0, 194, 232, 0.4));
   transition: 0.3s ease;
+}
+/* --- RƏSMİ TƏRƏFDAŞLIQ - ULTRA PREMIUM --- */
+.wolt-badge-row-center {
+  display: flex;
+  justify-content: center; /* Bloku üfüqi mərkəzləyir */
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.wolt-partner-tag {
+  /* Arxa fon blur effekti */
+  background: rgba(0, 194, 232, 0.1) !important;
+  backdrop-filter: blur(12px); /* Arxanı dumanlı göstərir */
+  -webkit-backdrop-filter: blur(12px);
+  
+  color: #00c2e8;
+  
+  /* Ölçü nizamı: Soldan sağa geniş */
+  padding: 12px 60px !important; 
+  border-radius: 100px;
+  
+  /* Mətn və İkon mərkəzdə */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  
+  /* Font və kənar xətt */
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  border: 1px solid rgba(0, 194, 232, 0.3);
+  
+  /* Animasiya və kölgə */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: fadeInDown 0.8s ease-out;
+}
+
+/* Mobildə daha dolğun görünməsi üçün balaca bir toxunuş */
+@media (max-width: 768px) {
+  .wolt-partner-tag {
+    padding: 10px 40px !important;
+    font-size: 12px;
+    width: auto; /* Ekranı tam tutmasın, şık qalsın */
+    margin-left: 90px;
+  }
 }
