@@ -230,47 +230,77 @@
 }
 
 /* MOBİL VERSİYA */
-@media (max-width: 968px) {
+@media (max-width: 768px) {
+  .wolt-full-page {
+    padding: 40px 20px; /* Kenar boşluqları azaltdıq ki, mətnə yer qalsın */
+  }
+
   .wolt-main-grid {
     grid-template-columns: 1fr;
-    gap: 30px; /* Mobildə elementlər arası məsafəni bir az azaltdıq */
+    gap: 40px;
+  }
+
+  /* Başlığın mobildə kəsilməməsi və geniş görünməsi üçün */
+  .wolt-hero-title {
+    font-size: 32px; /* Ölçünü bir az optimallaşdırdıq */
+    width: 100%;
+    text-align: center;
+    display: block; /* Inline-block-dan çıxartdıq ki, tam eni tutsun */
+  }
+
+  .gradient-text {
+    display: block; /* Alt sətirə keçidi daha səliqəli edir */
+    width: 100%;
+  }
+
+  /* 🔥 Mətnlərin sona qədər uzanması (Sənin istədiyin hissə) */
+  .wolt-official-text p {
+    text-align: justify; /* Mətnləri sağ-sol kənarlara yapışdırır */
+    hyphens: auto;       /* Lazım gələrsə sözləri bölür */
+    width: 100%;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
   }
 
   .wolt-video-player {
-    height: 400px;
+    height: 350px; /* Mobildə hündürlük balansı */
+  }
+
+  /* Endirim kartı mobildə tam en */
+  .wolt-offer-card {
+    width: 100%;
+    padding: 20px;
   }
 
   .offer-inner {
     flex-direction: column;
-    gap: 25px;
-    text-align: center;
+    gap: 20px;
   }
 
-  .offer-divider {
-    width: 80%;
-    height: 1px;
-    margin: 0 auto; /* Xətti mərkəzləyir */
-  }
-
+  /* Düymə və Footer hissə */
   .wolt-footer-action {
     flex-direction: column;
-    gap: 25px;
-    padding: 30px;
-    align-items: center; /* İkonlar olan hissəni də mərkəzləyir */
+    width: 100%;
+    gap: 20px;
+    padding: 25px 15px;
   }
 
   .features-side {
-    align-items: center; /* İkon siyahısını mərkəzə yığır */
-    text-align: center;
+    width: 100%;
+    align-items: center;
   }
 
   .wolt-cta-btn {
     width: 100%;
-    display: flex;         /* Flexbox aktiv edilir */
-    justify-content: center; /* Üfüqi olaraq mərkəzləyir */
-    align-items: center;     /* Şaquli olaraq mərkəzləyir */
-    gap: 12px;
+    justify-content: center; /* İkon və mətni mərkəzləyir */
+    padding: 18px;
+    font-size: 14px;
+  }
+  
+  .footer-note {
     text-align: center;
+    width: 100%;
   }
 }
 .wolt-hero-title {
