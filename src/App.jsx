@@ -9,6 +9,7 @@ import WoltSigning from './components/WoltSigning';
 import Details from './components/Details'
 import Training from "./components/Training"
 import Services from "./components/Services"
+import Playstation from './components/Playstation';
 
 function App() {
  return (
@@ -46,6 +47,9 @@ function App() {
 
       <section id="about">
         <About />
+      </section>
+      <section id="playstation">
+        <Playstation />
       </section>
     </main>
 

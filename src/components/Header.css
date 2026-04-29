@@ -100,23 +100,322 @@ body {
   text-transform: uppercase;
 }
 
+/* Düyməni sağda mıxlayırıq */
 .menu-toggle {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
+  position: fixed !important;
+  top: 25px;
+  right: 25px;
+  z-index: 100001; /* Paneldən də üstdə olsun */
+  /* Sənin əvvəlki dizayn kodların aşağıda qalacaq... */
+}
+
+/* Menyu panelini ekranın mərkəzinə mıxlayırıq */
+.hero-nav-wrapper {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 100000;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--glass);
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.1);
+  
+  /* Animasiya üçün gizli saxlayırıq */
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s ease;
+  
+  /* Fon rəngi (naviqasiya açılanda arxa tərəf qaralsın deyə) */
+  background: rgba(0, 0, 0, 0.9);
+}
+/* --- FIXED MENU OVERLAY --- */
+.fixed-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.98);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hamburger {
-  width: 24px;
-  height: 2px;
-  background: white;
+.fixed-menu-overlay.nav-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- GRID CONTAINER --- */
+.fixed-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 95%;
+  max-width: 1100px;
+  padding: 20px;
+  animation: gridAppear 0.6s ease-out forwards;
+}
+
+@keyframes gridAppear {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* --- NAV CARD (OPTIMAL ÖLÇÜ) --- */
+.nav-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 25px 15px; /* Padding balanslaşdırıldı */
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* İkonlar yuxarıda sabit qalsın */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  overflow: hidden;
+  min-height: 180px; /* Bütün kartlar eyni ölçüdə olsun */
+  box-sizing: border-box;
+}
+
+.nav-card:hover {
+  background: rgba(0, 194, 232, 0.05);
+  border-color: rgba(0, 194, 232, 0.5);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* --- ICON STYLING --- */
+.nav-card-icon {
+  width: 60px; 
+  height: 60px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  transition: 0.3s;
+  flex-shrink: 0; /* İkonun sıxılmasını önləyir */
+}
+
+.nav-card:hover .nav-card-icon {
+  background: #00c2e8;
+  transform: scale(1.1);
+}
+
+.nav-card-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+/* --- TEXT STYLING (QUTUDA SABİTLƏMƏ) --- */
+.nav-card-text {
+  color: #fff;
+  font-size: 13px; /* Daha səliqəli görünüş üçün bir az kiçildildi */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.3;
+  opacity: 0.8;
+  transition: 0.3s;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1; /* Mətni qalan boşluğa yayır */
+  word-wrap: break-word;
+}
+
+.nav-card:hover .nav-card-text {
+  color: #00c2e8;
+  opacity: 1;
+}
+@media (max-width: 992px) {
+  /* Bütün kartları tək sütun halına gətirir (alt-alta düzür) */
+  .fixed-menu-grid {
+    grid-template-columns: 1fr !important; 
+    gap: 12px;
+    padding: 20px;
+    width: 90%;
+  }
+
+  /* Kart daxili elementləri yan-yana (ikon solda, mətn sağda) edir */
+  .nav-card {
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    min-height: 70px !important;
+    padding: 12px 20px !important;
+    gap: 15px !important;
+    border-radius: 18px !important;
+  }
+
+  /* İkonu kiçildirik ki, sətirdə çox yer tutmasın */
+  .nav-card-icon {
+    width: 40px !important;
+    height: 40px !important;
+    margin-bottom: 0 !important; /* Alt boşluğu ləğv edirik */
+    flex-shrink: 0;
+  }
+
+  .nav-card-icon img {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  /* Mətni sola hizalayırıq */
+  .nav-card-text {
+    font-size: 13px !important;
+    text-align: left !important;
+    margin: 0 !important;
+    letter-spacing: 0.3px;
+  }
+}
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+  .fixed-menu-grid {
+    grid-template-columns: column;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fixed-menu-grid {
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .nav-card {
+    padding: 20px 10px;
+    min-height: 150px; /* Mobildə daha yığcam */
+    border-radius: 22px;
+  }
+
+  .nav-card-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+
+  .nav-card-icon img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .nav-card-text {
+    font-size: 11px;
+    line-height: 1.2;
+  }
+  
+}
+/* --- NAV CARD (YAN-YANA DÜZÜLÜŞ) --- */
+.nav-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 15px 20px; /* Yanlardan daha çox boşluq */
+  text-decoration: none;
+  display: flex;
+  flex-direction: row; /* 🔥 ELEMENTLƏRİ YAN-YANA DÜZÜR */
+  align-items: center; /* Şaquli mərkəzləyir */
+  justify-content: flex-start; /* Soldan başlayır */
+  gap: 15px; /* İkonla mətn arasındakı məsafə */
+  transition: all 0.4s ease;
+  min-height: 80px; /* Boyu çox uzatmırıq, çünki yan-yanadırlar */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nav-card:hover {
+  background: rgba(0, 194, 232, 0.08);
+  border-color: rgba(0, 194, 232, 0.5);
+  transform: translateX(10px); /* Üstə yox, sağa doğru hərəkət daha şık durur */
+}
+
+/* --- ICON STYLING (KIÇILDILMIŞ VƏ SOLDA) --- */
+.nav-card-icon {
+  width: 45px; 
+  height: 45px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* İkonun sıxılmaması üçün vacibdir */
+  margin-bottom: 0 !important; /* Alt boşluğu ləğv etdik */
+}
+
+.nav-card-icon img {
+  width: 25px;
+  height: 25px;
+}
+
+/* --- TEXT STYLING (SAĞDA VƏ SOLA HİZALANMIŞ) --- */
+.nav-card-text {
+  color: #fff;
+  font-size: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: left; /* 🔥 MƏTN SOLA BAXIR */
+  line-height: 1.2;
+  opacity: 0.9;
+  flex-grow: 1;
+}
+
+/* --- MOBİL ÜÇÜN RESPONSIVE --- */
+@media (max-width: 480px) {
+  .fixed-menu-grid {
+    grid-template-columns: 1fr; /* 🔥 Mobildə tək sütun daha yaxşıdır, çünki yan-yanadırlar */
+    gap: 10px;
+  }
+
+  .nav-card {
+    padding: 12px 15px;
+    min-height: 70px;
+  }
+}
+/* Menyu açılanda görünən halı */
+.hero-nav-wrapper.nav-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Sənin daxili kartlarının (nav-card) mövcud CSS-i bura heç bir maneə yaratmayacaq. */
+
+/* Menyu açılanda düymənin daxilindəki X effekti üçün (opsional) */
+.menu-toggle.active .hamburger {
+  background: transparent !important;
+}
+
+.menu-toggle.active .hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.menu-toggle.active .hamburger::after {
+  transform: rotate(-45deg);
+  bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    top: 40px;
+    right: 20px;
+  }
 }
 
 .hamburger::before, .hamburger::after {
@@ -725,6 +1024,7 @@ body {
   flex-direction: column;
   gap: 15px;
 }
+
 
 .main-title {
   font-size: clamp(50px, 10vw, 150px);
