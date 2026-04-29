@@ -413,7 +413,7 @@ body {
 
 @media (max-width: 768px) {
   .menu-toggle {
-    top: 40px;
+    top: 50px;
     right: 20px;
   }
 }
