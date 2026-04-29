@@ -10,7 +10,7 @@ const Header = () => {
   };
 
   const navLinks = [
-    { id: "ps-rental", name: "Playstation İcarəsi", icon: "https://img.icons8.com/?size=100&id=63236&format=png&color=000000" },
+    { id: "playstation", name: "Playstation İcarəsi", icon: "https://img.icons8.com/?size=100&id=63236&format=png&color=000000" },
     { id: "e-bikes", name: "Elektron Velosipedlər", icon: "https://img.icons8.com/?size=100&id=huTtKs1QDcVs&format=png&color=000000" },
     { id: "classic-bikes", name: "Sadə Velosipedlər", icon: "https://img.icons8.com/?size=100&id=1DDLWcrCVxtp&format=png&color=000000" },
     { id: "wolt", name: "Wolt Qeydiyyat", icon: "https://img.icons8.com/?size=100&id=n1vMT3Sf4T2c&format=png&color=000000" },
