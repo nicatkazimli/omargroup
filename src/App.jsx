@@ -7,8 +7,6 @@ import Contact from './components/Contact';
 import './App.css';
 import WoltSigning from './components/WoltSigning';
 import Details from './components/Details'
-import Training from "./components/Training"
-import Services from "./components/Services"
 import Playstation from './components/Playstation';
 
 function App() {
@@ -29,16 +27,8 @@ function App() {
         <WoltSigning />
       </section>
 
-      <section id="training">
-        <Training />
-      </section>
-
       <section id="details">
         <Details />
-      </section>
-
-      <section id="services">
-        <Services />
       </section>
 
       <section id="contact">

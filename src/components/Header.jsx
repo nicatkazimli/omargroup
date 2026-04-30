@@ -10,14 +10,12 @@ const Header = () => {
   };
 
   const navLinks = [
-    { id: "playstation", name: "Playstation İcarəsi", icon: "https://img.icons8.com/?size=100&id=63236&format=png&color=000000" },
+    { id: "playstation", name: "Playstation İcarəsi", icon: "https://img.icons8.com/?size=100&id=xc77LZDp1FNP&format=png&color=000000" },
     { id: "e-bikes", name: "Elektron Velosipedlər", icon: "https://img.icons8.com/?size=100&id=huTtKs1QDcVs&format=png&color=000000" },
     { id: "classic-bikes", name: "Sadə Velosipedlər", icon: "https://img.icons8.com/?size=100&id=1DDLWcrCVxtp&format=png&color=000000" },
     { id: "wolt", name: "Wolt Qeydiyyat", icon: "https://img.icons8.com/?size=100&id=n1vMT3Sf4T2c&format=png&color=000000" },
-    { id: "training", name: "Təlim Proqramı", icon: "https://img.icons8.com/?size=100&id=b3pmakv2kPti&format=png&color=000000" },
-    { id: "about", name: "Haqqımızda", icon: "https://img.icons8.com/?size=100&id=b3pmakv2kPti&format=png&color=000000" },
+    { id: "about", name: "Komandamız", icon: "https://img.icons8.com/?size=100&id=b3pmakv2kPti&format=png&color=000000" },
     { id: "details", name: "Ehtiyyat Hissələri", icon: "https://img.icons8.com/?size=100&id=26293&format=png&color=000000" },
-    { id: "services", name: "Texniki Servis", icon: "https://img.icons8.com/?size=100&id=91Eby8fZMlnP&format=png&color=000000" },
     { id: "contact", name: "Bizimlə Əlaqə", icon: "https://img.icons8.com/?size=100&id=pHLee504uOZJ&format=png&color=000000" }
   ];
 
@@ -31,7 +29,6 @@ const Header = () => {
         <div className="hamburger"></div>
       </div>
 
-      {/* 🔥 2. SABİT MENYU PANELİ (Həmişə ekranın mərkəzində açılır) */}
       <div className={`fixed-menu-overlay ${isMenuOpen ? "nav-open" : ""}`}>
         <div className="fixed-menu-grid">
           {navLinks.map((link) => (
@@ -49,7 +46,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* 3. HERO BÖLMƏSİ (Artıq menyu bunun içində deyil) */}
       <section id="home" className="hero">
         <div className="hero-container">
           <div className="hero-top">
