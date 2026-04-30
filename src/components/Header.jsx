@@ -15,6 +15,7 @@ const Header = () => {
     { id: "classic-bikes", name: "Sadə Velosipedlər", icon: "https://img.icons8.com/?size=100&id=1DDLWcrCVxtp&format=png&color=000000" },
     { id: "wolt", name: "Wolt Qeydiyyat", icon: "https://img.icons8.com/?size=100&id=n1vMT3Sf4T2c&format=png&color=000000" },
     { id: "training", name: "Təlim Proqramı", icon: "https://img.icons8.com/?size=100&id=b3pmakv2kPti&format=png&color=000000" },
+    { id: "about", name: "Haqqımızda", icon: "https://img.icons8.com/?size=100&id=b3pmakv2kPti&format=png&color=000000" },
     { id: "details", name: "Ehtiyyat Hissələri", icon: "https://img.icons8.com/?size=100&id=26293&format=png&color=000000" },
     { id: "services", name: "Texniki Servis", icon: "https://img.icons8.com/?size=100&id=91Eby8fZMlnP&format=png&color=000000" },
     { id: "contact", name: "Bizimlə Əlaqə", icon: "https://img.icons8.com/?size=100&id=pHLee504uOZJ&format=png&color=000000" }

@@ -1,0 +1,286 @@
+.about-section {
+  padding: 100px 5%;
+  background: #0a0a0a;
+  min-height: 100vh;
+  color: white;
+  overflow: hidden;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.about-header h2 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: 5px;
+  color: #00c2e8;
+  text-shadow: 0 0 20px rgba(0, 194, 232, 0.4);
+}
+
+.team-container {
+  display: grid;
+  /* 1400px-dən yuxarı ekranlarda birbaşa 5 sütun yaradırıq */
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 20px; /* Kartlar çoxaldığı üçün məsafəni bir az azaltdıq */
+  max-width: 1600px; /* Konteyneri bir az genişləndirdik ki, nəfəs alsınlar */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- RESPONSIVE AYARLARI --- */
+
+/* Planşet və kiçik monitorlar (1200px-dən aşağı) */
+@media (max-width: 1200px) {
+  .team-container {
+    grid-template-columns: repeat(3, 1fr); /* 3-2 düzülüşü */
+  }
+}
+
+/* Kiçik planşetlər (992px-dən aşağı) */
+@media (max-width: 992px) {
+  .team-container {
+    grid-template-columns: repeat(2, 1fr); /* 2-2-1 düzülüşü */
+  }
+}
+
+/* Mobil telefonlar (600px-dən aşağı) */
+@media (max-width: 600px) {
+  .team-container {
+    grid-template-columns: 1fr; /* Hamısı alt-alta */
+    width: 100%;
+  }
+  
+  .member-card {
+    max-width: 350px; /* Mobildə kartlar çox yayılmasın */
+    margin: 0 auto;
+  }
+}
+
+/* --- KART DİZAYNI --- */
+.member-card {
+  height: 100%;
+}
+
+.card-inner {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 30px;
+  overflow: hidden;
+  height: 100%;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+.member-card:hover .card-inner {
+  transform: translateY(-15px);
+  border-color: #00c2e8;
+  box-shadow: 0 20px 40px rgba(0, 194, 232, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* --- ŞƏKİL HİSSƏSİ --- */
+.image-holder {
+  width: 100%;
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-holder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.member-card:hover .image-holder img {
+  transform: scale(1.1);
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, #0a0a0a, transparent);
+}
+
+/* --- MƏLUMAT HİSSƏSİ --- */
+.member-info {
+  padding: 30px;
+  text-align: center;
+}
+
+.member-info h3 {
+  font-size: 24px;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.role {
+  display: block;
+  color: #00c2e8;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.bio-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 20px;
+  min-height: 80px; /* Bütün qutuların eyni boyda qalması üçün */
+}
+
+/* --- DÜYMƏ --- */
+.read-more-btn {
+  background: transparent;
+  border: 1px solid #00c2e8;
+  color: #00c2e8;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.read-more-btn:hover {
+  background: #00c2e8;
+  color: #000;
+  box-shadow: 0 0 15px #00c2e8;
+}
+.bio-text {
+  font-size: 15px;
+  line-height: 1.7; /* Oxunaqlılıq üçün sətir arası məsafəni bir az artırdım */
+  color: #ccc;
+  margin-bottom: 20px;
+  
+  /* Sənin istədiyin əsas dəyişikliklər: */
+  text-align: justify;       /* Mətni həm sola, həm sağa tam yayır */
+  text-justify: inter-word;  /* Sözlər arasındakı məsafəni bərabər bölür */
+  width: 100%;               /* Mətnin qutunu tam tutmasını təmin edir */
+  padding: 0 10px;           /* Kənarlara çox yapışmaması üçün incə boşluq */
+  
+  white-space: normal;
+  word-wrap: break-word;
+}
+/* --- HEADER KONTEYNERİ --- */
+.about-header {
+  text-align: center;
+  margin-bottom: 100px;
+  position: relative;
+}
+
+/* --- GLITCH TEXT (ƏSAS EFFEKT) --- */
+.glitch-text {
+  font-size: clamp(3rem, 8vw, 5rem); /* Ekran ölçüsünə görə dinamik böyüyür */
+  font-weight: 900;
+  text-transform: uppercase;
+  position: relative;
+  color: #fff;
+  letter-spacing: 10px;
+  margin: 0;
+  cursor: pointer;
+  
+  /* Neon Parlaması */
+  text-shadow: 
+    0 0 10px rgba(0, 194, 232, 0.8),
+    0 0 20px rgba(0, 194, 232, 0.4),
+    0 0 40px rgba(0, 194, 232, 0.1);
+}
+
+/* Glitch üçün saxta qatlamalar (Pseudo-elements) */
+.glitch-text::before,
+.glitch-text::after {
+  content: "KOMANDAMIZ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch-text::before {
+  color: #ff00c1; /* Çəhrayı glitch */
+  z-index: -1;
+  animation: glitch-anim 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+}
+
+.glitch-text::after {
+  color: #00fff9; /* Firuzəyi glitch */
+  z-index: -2;
+  animation: glitch-anim 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+}
+
+/* --- ALT MƏTN (SUBTITLE) --- */
+.about-header p {
+  font-size: 18px;
+  color: #00c2e8;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-top: 15px;
+  font-weight: 400;
+  opacity: 0.7;
+  position: relative;
+  display: inline-block;
+}
+
+/* Alt mətni kənarlarından xətlər */
+.about-header p::before,
+.about-header p::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #00c2e8);
+}
+
+.about-header p::before { right: 110%; }
+.about-header p::after { left: 110%; transform: rotate(180deg); }
+
+/* --- GLITCH ANİMASİYASI --- */
+@keyframes glitch-anim {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-3px, 3px);
+  }
+  40% {
+    transform: translate(-3px, -3px);
+  }
+  60% {
+    transform: translate(3px, 3px);
+  }
+  80% {
+    transform: translate(3px, -3px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+/* Hover edəndə vibrasiyanı artır */
+.glitch-text:hover::before {
+  animation: glitch-anim 0.2s infinite;
+}
+/* Əgər mobildə "justify" çox boşluq yaratsa, sola hizalama daha yaxşı görünür: */
+@media (max-width: 480px) {
+  .bio-text {
+    text-align: left; /* Mobildə daha təbii görünür */
+    font-size: 14px;
+  }
+}
+
+/* MOBIL RESPONSIVE */
+@media (max-width: 768px) {
+  .about-header h2 { font-size: 2.5rem; }
+  .member-card { margin-bottom: 20px; }
+}
