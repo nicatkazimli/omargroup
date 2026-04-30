@@ -40,8 +40,8 @@ const teamMembers = [
     name: "Dima",
     role: "Velosiped Təlimçisi",
     image: "dima.jpg",
-    bio: "8 ildən artıqdır ki, elektrikli vasitələrin təmiri və satışı sahəsində fəaliyyət göstərirəm. “Velodoktor” brendi altında çalışıram.",
-    fullBio: "Salam, mənim adım Dimadır. Mən velosiped təlimçisi kimi fəaliyyət göstərirəm və eyni zamanda Velohub daxilində sahibkaram. Bununla yanaşı, Omar Group çərçivəsində velosiped təlimlərində iştirak edir, velosiped sürə bilməyənlərə sürməyi öyrədirəm. Hazırda fəaliyyətimizi Omar Group daxilində davam etdiririk."
+    bio: " Mən velosiped təlimçisi kimi fəaliyyət göstərirəm",
+    fullBio: " və eyni zamanda Velohub daxilində sahibkaram. Bununla yanaşı, Omar Group çərçivəsində velosiped təlimlərində iştirak edir, velosiped sürə bilməyənlərə sürməyi öyrədirəm. Hazırda fəaliyyətimizi Omar Group daxilində davam etdiririk."
   }
 ];
 
