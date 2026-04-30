@@ -473,7 +473,6 @@
 /* Mobildə mərkəzləmə üçün */
 @media (max-width: 768px) {
   .btn-whatsapp-simple {
-    margin-left: 55px;
     width: 100%;
     max-width: 250px;
   }

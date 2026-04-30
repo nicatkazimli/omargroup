@@ -70,7 +70,7 @@ const Contact = () => {
       {[
         "Velosiped İcarəsi", "PlayStation Rent", "Kuryer Xidməti", 
         "Velo/Moto Təmir", "Biznes Qurulması", "Kamp Turları",
-        "Moto Təlim", "Ehtiyat Hissələri"
+         "Ehtiyat Hissələri"
       ].map((service, i) => (
         <motion.button
           key={i}
