@@ -3,13 +3,13 @@ import { motion } from 'framer-motion';
 import './About.css';
 
 const teamMembers = [
-  {
+ {
     id: 1,
     name: "Ceyhun",
     role: "Təsisçi / Omar Group",
-    image: "ceyhun.jpg", // Bura atdığın şəkli qoyarsan
-    bio: "Ümumiyyətlə, mənim biznes fəaliyyətim 2015-ci ildən başlayıb. Artıq 11 ildir ki, bizneslə məşğulam. Bu müddət ərzində, 2018-ci ildə “Omar Group”u yaratmışam. “Omar Group” əsasən rent (icarə) sektorunda fəaliyyət göstərir. Biz fəaliyyətə velosiped icarəsi ilə başlamışıq...",
-    fullBio: "Hazırda “Omar Group” olaraq 12 fərqli sektorda xidmət göstəririk. Əsas fəaliyyət istiqamətimiz yenə də rent sektorudur. Bu sahəyə velosipedlərin, PlayStation cihazlarının, kamp çadırlarının icarəsi daxildir. 200-dən artıq kuryer komandamız və 1500-dən artıq Wolt dəstəyimizlə fəaliyyətimizi genişləndiririk."
+    image: "ceyhun.jpg",
+    bio: "Ümumiyyətlə, mənim biznes fəaliyyətim 2015-ci ildən başlayıb. Artıq 11 ildir ki, bizneslə məşğulam. Bu müddət ərzində, 2018-ci ildə “Omar Group”u yaratmışam. “Omar Group” əsasən rent (icarə) sektorunda fəaliyyət göstərir.",
+    fullBio: "Biz fəaliyyətə velosiped icarəsi ilə başlamışıq. 2018-ci ildən 2020-ci ilə qədər velosiped icarəsi ilə məşğul olmuşuq. 2020-ci ildən 2022-ci ilə qədər isə PlayStation icarəsinə başlamışıq. 2022-ci ildən etibarən həm PlayStation, həm də velosiped icarəsini genişləndirərək elektrikli velosipedlər, mopedlər və digər rent xidmətləri ilə fəaliyyətimizi davam etdirmişik. Hazırda “Omar Group” olaraq 12 fərqli sektorda xidmət göstəririk. Əsas fəaliyyət istiqamətimiz yenə də rent sektorudur. Bu sahəyə velosipedlərin (o cümlədən elektrikli), mopedlərin, PlayStation cihazlarının, kamp çadırlarının və oxşar avadanlıqların icarəsi daxildir. Bununla yanaşı, satış istiqamətimiz də mövcuddur. Elektrikli və adi velosipedlərin, PlayStation cihazlarının (PlayStation 5, PlayStation 4, PlayStation 3), pultların, həmçinin kamp çadırlarının satışını həyata keçiririk. Eyni zamanda kamp turlarının təşkili və digər əlaqəli xidmətlər də təqdim edirik. Əlavə olaraq, velosiped təmiri xidmətimiz fəaliyyət göstərir. Elektrikli velosipedlər üçün xüsusi texniki xidmətimiz də mövcuddur. Bundan başqa, velosiped sürməyi bilməyənlər üçün velotəlimlər keçiririk. Təlimləri istənilən məkanda təşkil edə bilirik — məsələn, Bulvar ərazisində, Dağüstü parkda və digər uyğun yerlərdə. Eyni zamanda, moto təlim xidmətimiz də mövcuddur. Əlavə olaraq, moto ehtiyat hissələrinin, velosiped detallarının və müxtəlif aksessuarların satışı ilə də məşğuluq. Kənd təsərrüfatı sahəsində də fəaliyyətimiz var. Təbii məhsulların — məsələn, bal və digər təbii məhsulların, həmçinin protein tərkibli təbii məhsulların satışı ilə məşğuluq. Hal-hazırda əlavə olaraq hazır bizneslərin qurulması xidməti də təqdim edirik. Məsələn, kiminsə mağaza və ya digər biznes qurmaq istəyi olarsa, ona hazır sistem təklif edirik. Bu sistemə həm iş prosesi, həm də işçi heyəti daxildir və tam hazır şəkildə təqdim olunur. Bundan başqa, Bakı daxilində geniş çatdırılma xidmətimiz mövcuddur. Kuryer komandamız vasitəsilə müştərilərin məhsullarını operativ şəkildə ünvanlara çatdıra bilirik. Əlavə olaraq, Bulvar ərazisində skuter icarəsi xidmətimiz də mövcuddur. Hazırda komandamızın tərkibində 200 nəfərdən artıq aktiv kuryer fəaliyyət göstərir. Eyni zamanda, “Omar Group” daxilində müxtəlif sahələr üzrə xeyli sayda komanda üzvlərimiz mövcuddur. İndiyə qədər isə 1500-dən artıq kuryerin Wolt platformasına qoşulmasına dəstək olmuşuq."
   },
   {
     id: 2,

@@ -266,7 +266,38 @@
     transform: translate(0);
   }
 }
+@media (max-width: 768px) {
 
+  .glitch-text {
+    font-size: 32px;       /* çox böyük idi, balansladıq */
+    letter-spacing: 4px;   /* mobil üçün daha uyğun */
+    line-height: 1.2;
+    text-shadow: 
+      0 0 6px rgba(0, 194, 232, 0.7),
+      0 0 12px rgba(0, 194, 232, 0.4);
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    font-size: 32px; /* əsas textlə eyni olsun */
+  }
+
+  .about-header p {
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+  }
+
+  .about-header p::before,
+  .about-header p::after {
+    width: 25px; /* xətlər kiçildildi */
+  }
+  .about-header{
+      text-align: center;
+  margin-bottom: 80px;
+  }
+
+}
 /* Hover edəndə vibrasiyanı artır */
 .glitch-text:hover::before {
   animation: glitch-anim 0.2s infinite;
