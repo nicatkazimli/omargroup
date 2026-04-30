@@ -17,7 +17,7 @@ const teamMembers = [
     role: "İcarə Koordinasiya",
     image: "samxal.jpg",
     bio: "24 yaşım var. “Omar Group”da fəaliyyət göstərirəm və əsasən velosipedlərin icarəsi və vasitələrin icarəyə verilməsi prosesinə dəstək oluram.",
-    fullBio: "Salam, mənim adım Şamxal, 24 yaşım var. “Omar Group”da fəaliyyət göstərirəm və əsasən velosipedlərin icarəsi və vasitələrin icarəyə verilməsi prosesinə dəstək oluram. Ümumilikdə, komandamızın əsas məqsədi xidmət keyfiyyətini gücləndirmək və müştərilərimizə operativ, problemsiz xidmət göstərməkdir."
+    fullBio: " “Omar Group”da fəaliyyət göstərirəm və əsasən velosipedlərin icarəsi və vasitələrin icarəyə verilməsi prosesinə dəstək oluram. Ümumilikdə, komandamızın əsas məqsədi xidmət keyfiyyətini gücləndirmək və müştərilərimizə operativ, problemsiz xidmət göstərməkdir."
   },
   {
     id: 3,
@@ -25,7 +25,7 @@ const teamMembers = [
     role: "Baş Texnik (Velo)",
     image: "alik.jpg",
     bio: "Velosipedlərin təmiri ilə məşğulam. 8 ildən artıqdır ki, bu sahədə təcrübəm var. Hazırda “Omar Group”da təmir prosesində iştirak edirəm.",
-    fullBio: "Salam, mənim adım Alikdir. Velosipedlərin qüsursuz şəkildə hazırlanaraq müştərilərə icarəyə verilməsini təmin edirəm."
+    fullBio: " Velosipedlərin qüsursuz şəkildə hazırlanaraq müştərilərə icarəyə verilməsini təmin edirəm."
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ const teamMembers = [
     role: "Elektrikli Velosipedlər Mütəxəssisi",
     image: "rovsen.jpg",
     bio: "8 ildən artıqdır ki, elektrikli vasitələrin təmiri və satışı sahəsində fəaliyyət göstərirəm. “Velodoktor” brendi altında çalışıram.",
-    fullBio: "Salam, mənim adım Rövşəndir. Eyni zamanda “Omar Group” daxilində elektrikli skuter və velosipedlərin texniki servisini həyata keçiririk."
+    fullBio: " Eyni zamanda “Omar Group” daxilində elektrikli skuter və velosipedlərin texniki servisini həyata keçiririk."
   },
   {
     id: 5,
