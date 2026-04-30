@@ -17,7 +17,7 @@ const teamMembers = [
     role: "İcarə Koordinasiya",
     image: "samxal.jpg",
     bio: "24 yaşım var. “Omar Group”da fəaliyyət göstərirəm və əsasən velosipedlərin icarəsi və vasitələrin icarəyə verilməsi prosesinə dəstək oluram.",
-    fullBio: " “Omar Group”da fəaliyyət göstərirəm və əsasən velosipedlərin icarəsi və vasitələrin icarəyə verilməsi prosesinə dəstək oluram. Ümumilikdə, komandamızın əsas məqsədi xidmət keyfiyyətini gücləndirmək və müştərilərimizə operativ, problemsiz xidmət göstərməkdir."
+    fullBio: "Ümumilikdə, komandamızın əsas məqsədi xidmət keyfiyyətini gücləndirmək və müştərilərimizə operativ, problemsiz xidmət göstərməkdir."
   },
   {
     id: 3,
