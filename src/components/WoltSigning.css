@@ -3,7 +3,7 @@
 .wolt-full-page {
   width: 100%;
   min-height: 100vh;
-  background: #050505;
+  background: linear-gradient(135deg, #020617, #0f172a, #153848) !important;
   font-family: 'Inter', sans-serif;
   color: white;
   padding: 60px 5%;

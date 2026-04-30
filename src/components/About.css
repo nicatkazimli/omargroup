@@ -1,6 +1,6 @@
 .about-section {
   padding: 100px 5%;
-  background: #0a0a0a;
+   background: linear-gradient(135deg, #020617, #0f172a, #153848) !important;
   min-height: 100vh;
   color: white;
   overflow: hidden;
