@@ -1,0 +1,539 @@
+.contact-section {
+  min-height: 100vh;
+  padding: 100px 20px;
+  background: #0a0a0a;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Arxa fon parlaması */
+.contact-bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 194, 232, 0.15) 0%, transparent 70%);
+  filter: blur(80px);
+  z-index: 1;
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+}
+
+/* Sol tərəf */
+.contact-desc {
+  color: #888;
+  font-size: 18px;
+  margin: 20px 0 40px;
+  line-height: 1.6;
+}
+
+.info-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.info-icon {
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 194, 232, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #00c2e8;
+  box-shadow: 0 0 15px rgba(0, 194, 232, 0.2);
+}
+
+.info-label {
+  display: block;
+  font-size: 12px;
+  color: #00c2e8;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+
+.info-text {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Sağ tərəf: Forma */
+.contact-form-card {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(15px);
+  padding: 50px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.input-group input, 
+.input-group textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 0;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-group label {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  color: #666;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.input-group input:focus ~ label,
+.input-group input:valid ~ label,
+.input-group textarea:focus ~ label,
+.input-group textarea:valid ~ label {
+  top: -20px;
+  font-size: 12px;
+  color: #00c2e8;
+  letter-spacing: 1px;
+}
+
+.input-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #00c2e8;
+  transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-group input:focus ~ .input-line,
+.input-group textarea:focus ~ .input-line {
+  width: 100%;
+  box-shadow: 0 0 10px #00c2e8;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(45deg, #00c2e8, #0072ff);
+  border: none;
+  border-radius: 15px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 194, 232, 0.3);
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0, 194, 232, 0.5);
+}
+.contact-interactive-side {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  border-radius: 40px;
+  border: 1px solid rgba(0, 194, 232, 0.2);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.box-header h3 {
+  font-size: 28px;
+  color: #fff;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.box-header p {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* Xidmət Düymələri (Chips) */
+.service-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.service-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: #eee;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.service-chip:hover {
+  background: #00c2e8;
+  color: #000;
+  border-color: #00c2e8;
+}
+
+/* Canlı Status */
+.live-status-card {
+  background: rgba(0, 255, 0, 0.05);
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background: #00ff00;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ff00;
+  animation: pulse 1.5s infinite;
+}
+
+/* WhatsApp Düyməsi */
+.whatsapp-fast-btn {
+  /* Ölçü və Düzülüş */
+  width: 220px;          /* İdeal standart genişlik */
+  height: 50px;          /* Standart buton hündürlüyü */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;             /* İkon və mətn arası məsafə */
+  
+  /* Stil */
+  background-color: #25d366;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 8px;    /* Modern, azca yuvarlaq künclər */
+  
+  /* Tipoqrafiya */
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  
+  /* Effektlər */
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  border: none;
+  cursor: pointer;
+}
+
+/* Üzərinə gələndə (Hover) */
+.whatsapp-fast-btn:hover {
+  background-color: #20ba5a; /* Çox cüzi tündləşmə */
+}
+
+/* Klikləyəndə (Active) */
+.whatsapp-fast-btn:active {
+  transform: scale(0.97); /* Basılma hissi yaradır */
+}
+
+/* İkonun ölçüsü (əgər içində ikon varsa) */
+.whatsapp-fast-btn svg {
+  font-size: 18px;
+}
+/* Əvvəlki .glitch-text::before və ::after hissələrini tamamilə sil */
+
+.glitch-text {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 6px;
+  position: relative;
+  margin-bottom: 20px;
+  
+  /* Köhnə qarışıq kölgələri sildik, tək və kəskin neon glow əlavə etdik */
+  text-shadow: 0 0 10px rgba(0, 194, 232, 0.5);
+  
+  /* Yazının altındakı o "çirkli" görüntünü tam təmizləmək üçün */
+  background: none;
+  -webkit-text-stroke: 0px; 
+}
+
+/* Yazının altına zərif və modern bir xətt əlavə edirik (daha kreativ görünür) */
+.glitch-text::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #00c2e8, transparent);
+  border-radius: 2px;
+  box-shadow: 0 0 15px rgba(0, 194, 232, 0.6);
+}
+
+/* Hover edəndə sadəcə rəngin dərinliyi artsın */
+.glitch-text:hover {
+  text-shadow: 0 0 20px rgba(0, 194, 232, 0.8);
+  transition: 0.3s ease;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 1; }
+}
+/* 1. Kölgələri və qatlamaları tamamilə ləğv edirik */
+.glitch-text::before,
+.glitch-text::after {
+  display: none !important; /* Arxa plandakı o rəngli yazıları silir */
+  content: none !important;
+}
+
+.glitch-text {
+  font-size: clamp(2.5rem, 6vw, 3.5rem); /* Ölçünü bir az optimallaşdırdıq */
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #ffffff; /* Ana rəng təmiz ağ */
+  letter-spacing: 4px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 30px;
+  
+  /* Səliqəli və tək rəngli neon parıltısı */
+  text-shadow: 0 0 15px rgba(0, 194, 232, 0.4);
+  
+  /* Animasiyaları təmizləyirik ki, titrəməsin */
+  animation: none !important;
+  transform: none !important;
+}
+/* Əvvəlki .glitch-text ilə bağlı NƏ VARSA HAMISINI SİL */
+
+.contact-title {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #ffffff; /* Təmiz ağ rəng */
+  letter-spacing: 4px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 30px;
+  
+  /* Zərif neon parıltısı (şəkildəki kimi dağınıq deyil) */
+  text-shadow: 0 0 15px rgba(0, 194, 232, 0.4);
+}
+.modern-contact-title {
+  /* Arxa fonda nə varsa hamısını sıfırlayırıq */
+  all: unset; 
+  display: block;
+  font-family: 'Inter', sans-serif; /* Və ya istifadə etdiyin ana şrift */
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #fff;
+  margin-bottom: 20px;
+  position: relative;
+  
+  /* Modern Gradient Effekti */
+  background: linear-gradient(to right, #fff 20%, #00c2e8 40%, #00c2e8 60%, #fff 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+  
+  /* Zərif və təmiz neon animasiyası */
+  animation: shine 4s linear infinite;
+}
+.contact-whatsapp-link {
+  /* Ölçülər və Düzülüş */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 240px;         /* Sabit genişlik */
+  height: 48px;         /* Standart hündürlük */
+  margin-top: 20px;
+  
+  /* Stil */
+  background-color: #25d366;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 8px;   /* Səliqəli künclər */
+  
+  /* Tipoqrafiya */
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  
+  /* Effektlər */
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+}
+
+/* Hover zamanı ölçü DƏYİŞMİR, sadəcə rəng və kölgə artır */
+.contact-whatsapp-link:hover {
+  background-color: #1eb954;
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+  transform: translateY(-2px); /* Çox yüngül yuxarı qalxma */
+}
+
+/* Klikləyəndə basılma hissi */
+.contact-whatsapp-link:active {
+  transform: translateY(0);
+  scale: 0.98;
+}
+.btn-whatsapp-simple {
+  /* Ölçüləri tam stabil edirik */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  height: 46px;
+  
+  /* Rəng və Stil */
+  background-color: #25d366;
+  color: #ffffff !important; /* Yazı rəngi mütləq ağ */
+  text-decoration: none !important;
+  border-radius: 6px;
+  
+  /* Tipoqrafiya */
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  /* Keçid effektləri (sabit) */
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* Hover zamanı yalnız rəng dəyişir, ölçü yerində qalır */
+.btn-whatsapp-simple:hover {
+  background-color: #1eb954;
+  text-decoration: none;
+}
+
+/* Klikləyəndə çox kiçik bir toxunuş hissi */
+.btn-whatsapp-simple:active {
+  transform: scale(0.98);
+}
+
+/* Mobildə mərkəzləmə üçün */
+@media (max-width: 768px) {
+  .btn-whatsapp-simple {
+    margin-left: 55px;
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+/* Mobildə tam sığması üçün */
+@media (max-width: 480px) {
+  .contact-whatsapp-link {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+/* Köhnə glitch-dən qalan elementləri mütləq gizlədirik */
+.modern-contact-title::before,
+.modern-contact-title::after {
+  content: none !important;
+  display: none !important;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Yazının altına sadə və kreativ bir xətt */
+.modern-contact-title {
+  border-left: 5px solid #00c2e8;
+  padding-left: 20px;
+  transition: all 0.4s ease;
+}
+
+.modern-contact-title:hover {
+  padding-left: 35px;
+  text-shadow: 0 0 20px rgba(0, 194, 232, 0.3);
+}
+/* Əgər mətndə hələ də nəsə artıq element qalsa, bu kod onları mütləq siləcək */
+.contact-title::before,
+.contact-title::after {
+  content: none !important;
+  display: none !important;
+}
+/* 2. Yazının altına modern, zərif bir neon xətt (seçimə bağlı) */
+.glitch-text::after {
+  display: block !important; /* Yuxarıdakı none-ı xətt üçün override edirik */
+  content: "" !important;
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: #00c2e8;
+  box-shadow: 0 0 10px #00c2e8;
+  border-radius: 2px;
+}
+/* Responsive */
+@media (max-width: 992px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  .contact-form-card { padding: 30px; }
+}
