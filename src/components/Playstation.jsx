@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FaCheckCircle } from 'react-icons/fa';
 import './Playstation.css';
 
 const psData = [
@@ -43,15 +44,20 @@ const psData = [
 
 const PsCard = ({ data }) => {
   const [imgIndex, setImgIndex] = useState(0);
+  const [orderStatus, setOrderStatus] = useState('idle'); // 'idle', 'loading', 'done'
 
   const nextImg = () => setImgIndex((prev) => (prev + 1) % data.images.length);
   const prevImg = () => setImgIndex((prev) => (prev - 1 + data.images.length) % data.images.length);
 
-  const handleWhatsApp = () => {
-    const phoneNumber = "+994509998281";
+  const handleOrder = () => {
+    if (orderStatus !== 'idle') return;
+
+    setOrderStatus('loading');
+
+    // WhatsApp məlumatlarını hazırlayırıq
+    const phoneNumber = "994509998281"; 
     const siteUrl = window.location.origin;
     const currentImagePath = data.images[imgIndex];
-
     const fullImageUrl = currentImagePath.startsWith('http') 
         ? currentImagePath 
         : `${siteUrl}${currentImagePath.startsWith('/') ? '' : '/'}${currentImagePath}`;
@@ -66,7 +72,20 @@ const PsCard = ({ data }) => {
                     `_________________________\n\n` +
                     `🖼️ *Məhsulun fotosu:* ${fullImageUrl}`;
 
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    // 3.5 saniyəlik maşın animasiyası başlayır
+    setTimeout(() => {
+      setOrderStatus('done');
+
+      // Animasiya bitdikdən 1 saniyə sonra mütləq yönləndirmə
+      setTimeout(() => {
+        window.location.href = whatsappUrl; 
+        
+        // Geri qayıdanda düymənin köhnə halına düşməsi üçün
+        setTimeout(() => setOrderStatus('idle'), 3000);
+      }, 1000);
+    }, 3500);
   };
 
   return (
@@ -95,7 +114,6 @@ const PsCard = ({ data }) => {
       <div className="ps-info">
         <h2 className="ps-title">{data.title}</h2>
         
-        {/* 🔥 Yenilənmiş Premium İkonlu Bölmə */}
         <div className="ps-features-premium">
           {data.features.map((f, i) => (
             <div key={i} className={`feature-item ${f.type === 'promo' ? 'hot-feature' : ''}`}>
@@ -112,8 +130,39 @@ const PsCard = ({ data }) => {
           ))}
         </div>
 
-        <button className="order-btn" onClick={handleWhatsApp}>
-          İNDİ SİFARİŞ ET
+        {/* Kreativ Animasiyalı Düymə */}
+        <button 
+          className={`order-btn ${orderStatus}`} 
+          onClick={handleOrder}
+          disabled={orderStatus !== 'idle'}
+        >
+          <AnimatePresence mode="wait">
+            {orderStatus === 'idle' && (
+              <motion.span key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                İNDİ SİFARİŞ ET
+              </motion.span>
+            )}
+
+            {orderStatus === 'loading' && (
+              <motion.div key="loading" className="truck-track">
+                <motion.div 
+                  className="mini-truck"
+                  initial={{ x: -120 }}
+                  animate={{ x: 120 }}
+                  transition={{ duration: 3, ease: "linear" }}
+                >
+                  🚚
+                </motion.div>
+                <div className="road-dots"></div>
+              </motion.div>
+            )}
+
+            {orderStatus === 'done' && (
+              <motion.div key="done" initial={{ scale: 0 }} animate={{ scale: 1 }} className="done-msg">
+                <FaCheckCircle /> SİFARİŞ EDİLDİ!
+              </motion.div>
+            )}
+          </AnimatePresence>
         </button>
       </div>
     </motion.div>

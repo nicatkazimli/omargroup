@@ -1,0 +1,327 @@
+/* Ana Section */
+.details-section {
+  padding: 100px 0;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Arxa fon üçün dekorativ parıltı */
+.details-section::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 40%;
+  height: 40%;
+  background: radial-gradient(circle, rgba(0, 210, 255, 0.1) 0%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+/* Başlıq Hissəsi */
+.details-header {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 5;
+}
+
+.details-header h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #fff;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.neon-text {
+  color: #00d2ff;
+  text-shadow: 0 0 30px rgba(0, 210, 255, 0.8), 0 0 60px rgba(0, 210, 255, 0.3);
+  position: relative;
+}
+
+.details-header p {
+  color: #888;
+  font-size: 1.1rem;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
+/* Slider Container */
+.slider-container {
+  width: 100%;
+  padding: 40px 0;
+}
+
+.details-swiper {
+  width: 100%;
+  padding-bottom: 80px !important;
+}
+
+/* Swiper Slide Effektləri */
+.swiper-slide {
+  width: 320px;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: blur(8px) grayscale(100%);
+  opacity: 0.3;
+  transform: scale(0.8) translateY(30px);
+}
+
+.swiper-slide-active {
+  filter: blur(0px) grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05) translateY(0);
+  z-index: 10;
+}
+
+/* Premium Card Dizaynı */
+.premium-detail-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transition: border 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.swiper-slide-active .premium-detail-card {
+  border: 1px solid rgba(0, 210, 255, 0.4);
+  box-shadow: 0 0 30px rgba(0, 210, 255, 0.15);
+}
+
+/* Şəkil Hissəsi - BURADA DÜZƏLİŞ EDİLDİ */
+.detail-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  padding: 15px; /* Şəklin kənarlardan məsafəsi */
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Şəkil kəsilmir, tam görünür */
+  transition: transform 0.5s ease;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+}
+
+.swiper-slide-active .detail-img-wrapper img {
+  transform: scale(1.1) rotate(2deg);
+}
+
+/* Qiymət Badge */
+.price-badge {
+  position: absolute;
+  bottom: -15px;
+  right: 20px;
+  background: #00d2ff;
+  color: #000;
+  padding: 6px 18px;
+  border-radius: 12px;
+  font-weight: 900;
+  font-size: 1rem;
+  box-shadow: 0 10px 20px rgba(0, 210, 255, 0.4);
+  z-index: 2;
+}
+
+/* Card Content */
+.detail-content {
+  padding: 35px 25px 25px;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.detail-content h3 {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.detail-content p {
+  color: #aaa;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+/* Düymənin daxili quruluşunu stabilləşdiririk */
+.detail-order-btn {
+  width: 100%;
+  height: 52px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  background: transparent;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  /* Mərkəzləmə üçün əlavə */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* Artıq boşluqları silirik */
+}
+
+.btn-flex, .fixing-anim {
+  display: flex;
+  flex-direction: row; /* Yan-yana olsunlar */
+  align-items: center; /* Vertikal olaraq tam mərkəz */
+  justify-content: center; /* Horizontal olaraq tam mərkəz */
+  gap: 10px; /* İkon və mətn arasındakı məsafə */
+  width: 100%;
+  height: 100%;
+}
+
+/* Lucide ikonun (SVG) stabilləşdirilməsi */
+.btn-flex svg, 
+.fixing-anim svg {
+  display: block; /* İnline-block-dan yaranan alt boşluğu silir */
+  flex-shrink: 0; /* İkonun sıxılmasının qarşısını alır */
+}
+
+/* Mətnin yuxarı qaçmasının qarşısını almaq üçün */
+.btn-flex span {
+  display: inline-block;
+  line-height: 1; /* Mətnin öz hündürlüyünü sıfırlayırıq ki, flex onu tam mərkəzləsin */
+  margin: 0;
+  padding: 0;
+}
+
+.gear-icon {
+  transition: transform 0.5s ease;
+}
+
+/* Hover animasiyası */
+.detail-order-btn:hover .gear-icon {
+  transform: rotate(90deg);
+}
+/* Animasiyalı Sifariş Düyməsi */
+.detail-order-btn {
+  width: 100%;
+  height: 52px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  background: transparent;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.detail-order-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.detail-order-btn:hover {
+  background: #00d2ff;
+  color: #000;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+}
+
+.detail-order-btn:hover::before {
+  left: 100%;
+}
+
+.detail-order-btn.fixing {
+  background: #222 !important;
+  border-color: #444;
+}
+
+/* Custom Navigation (Mobil Üçün Optimizasiya) */
+.swiper-button-prev-custom, .swiper-button-next-custom {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55px;
+  height: 55px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #00d2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.swiper-button-prev-custom:hover, .swiper-button-next-custom:hover {
+  background: #00d2ff;
+  color: #000;
+  box-shadow: 0 0 25px rgba(0, 210, 255, 0.5);
+}
+
+.swiper-button-prev-custom { left: 5%; }
+.swiper-button-next-custom { right: 5%; }
+
+/* Pagination Nöqtələri */
+.swiper-pagination-bullet {
+  background: #555 !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #00d2ff !important;
+  width: 25px !important;
+  border-radius: 10px !important;
+}
+
+/* MOBİL VERSİYA (FULL OPTİMİZASİYA) */
+@media (max-width: 1024px) {
+  .swiper-button-prev-custom { left: 2%; }
+  .swiper-button-next-custom { right: 2%; }
+}
+
+@media (max-width: 768px) {
+  .details-section { padding: 60px 0; }
+  
+  .swiper-slide {
+    width: 280px;
+    filter: blur(0px) grayscale(0%);
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+
+  .swiper-slide-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .swiper-button-prev-custom, .swiper-button-next-custom {
+    display: none; /* Mobildə swipe daha önəmlidir */
+  }
+
+  .detail-img-wrapper { height: 180px; }
+  
+  .details-header h2 { font-size: 2.2rem; }
+}
+
+@media (max-width: 480px) {
+  .swiper-slide { width: 85vw; }
+}

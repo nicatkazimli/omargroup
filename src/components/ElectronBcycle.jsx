@@ -1,35 +1,34 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Navigation, Gauge, MessageCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Navigation, Gauge, MessageCircle, CheckCircle } from 'lucide-react';
 import "./ElectronBcycle.css";
 
 const bicycles = [
-  // İlk 4 velosiped (Orijinal şəkilləri ilə qalır)
-  { id: 1, model: "E-Bike1", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike1.jpg", "/ebike2.jpg" ] },
-  { id: 2, model: "E-Bike2", km: "140 km + ", speed: "max - 50 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike5.jpg", "/ebike4.jpg",] }, 
-  { id: 3, model: "E-Bike3", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike8.jpg", "/ebike7.jpg" ]},
-  { id: 4, model: "E-Bike4", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike9.jpg", "/ebike10.jpg" ]},
-  
-  // 5-ci ID-dən başlayaraq həm məlumatlar, həm də şəkillər (ebike7.jpg) eyniləşdirildi
-  { id: 5, model: "E-Bike5", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
-  { id: 6, model: "E-Bike6", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
-  { id: 7, model: "E-Bike7", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
-  { id: 8, model: "E-Bike8", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
-  { id: 9, model: "E-Bike9", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
-  { id: 10, model: "E-Bike10", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
-  { id: 11, model: "E-Bike11", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
-  { id: 12, model: "E-Bike12", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
-  { id: 13, model: "E-Bike13", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
-  { id: 14, model: "E-Bike14", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
-  { id: 15, model: "E-Bike15", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
-  { id: 16, model: "E-Bike16", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
-  { id: 17, model: "E-Bike17", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
-  { id: 18, model: "E-Bike18", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
-  { id: 19, model: "E-Bike19", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
-  { id: 20, model: "E-Bike20", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN  Üzərində telefon qabları və Killik olur.  Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] }
+  { id: 1, model: "E-Bike1", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike1.jpg", "/ebike2.jpg" ] },
+  { id: 2, model: "E-Bike2", km: "140 km + ", speed: "max - 50 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike5.jpg", "/ebike4.jpg",] }, 
+  { id: 3, model: "E-Bike3", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike8.jpg", "/ebike7.jpg" ]},
+  { id: 4, model: "E-Bike4", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike9.jpg", "/ebike10.jpg" ]},
+  { id: 5, model: "E-Bike5", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
+  { id: 6, model: "E-Bike6", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
+  { id: 7, model: "E-Bike7", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
+  { id: 8, model: "E-Bike8", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
+  { id: 9, model: "E-Bike9", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
+  { id: 10, model: "E-Bike10", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
+  { id: 11, model: "E-Bike11", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
+  { id: 12, model: "E-Bike12", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
+  { id: 13, model: "E-Bike13", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
+  { id: 14, model: "E-Bike14", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
+  { id: 15, model: "E-Bike15", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
+  { id: 16, model: "E-Bike16", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
+  { id: 17, model: "E-Bike17", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
+  { id: 18, model: "E-Bike18", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
+  { id: 19, model: "E-Bike19", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
+  { id: 20, model: "E-Bike20", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] }
 ];
 
 const BicycleCard = ({ bike, index }) => {
   const [currentImg, setCurrentImg] = useState(0);
+  const [status, setStatus] = useState('idle'); // 'idle', 'pedaling', 'success'
 
   const nextImg = (e) => {
     e.stopPropagation();
@@ -41,37 +40,52 @@ const BicycleCard = ({ bike, index }) => {
     setCurrentImg((prev) => (prev === 0 ? bike.images.length - 1 : prev - 1));
   };
 
-const sendWhatsApp = () => {
-  const phoneNumber = "+994509998281";
-  
-  // Bu sətir saytın o anki real linkini (hansı vercel linkidirsə onu) avtomatik götürür
-  const siteUrl = window.location.origin;
-  
-  const currentImagePath = bike.images[currentImg];
-  
-  // Şəklin linkini tam URL halına salırıq
-  const fullImageUrl = currentImagePath.startsWith('http') 
-      ? currentImagePath 
-      : `${siteUrl}${currentImagePath.startsWith('/') ? '' : '/'}${currentImagePath}`;
+  const handleOrder = () => {
+    if (status !== 'idle') return;
+    setStatus('pedaling');
 
-  // Mesaj formatı (Şəklin linki ən sonda olmalıdır ki, WhatsApp preview tuta bilsin)
-  const message = `*YENİ SİFARİŞ SORĞUSU* 🚲\n` +
-                  `_________________________\n\n` +
-                  `👋 Salam, mən bu velosipedi kirayə götürmək istəyirəm:\n\n` +
-                  `📍 *Model:* ${bike.model}\n` +
-                  `💰 *Şərtlər:* ${bike.desc}\n\n` +
-                  `🆔 *Məhsul ID:* #${bike.id}\n` +
-                  `_________________________\n\n` +
-                  `🖼️ *Məhsulun fotosu:* ${fullImageUrl}`;
+    const phoneNumber = "994509998281";
+    const siteUrl = window.location.origin;
+    const currentImagePath = bike.images[currentImg];
+    const fullImageUrl = currentImagePath.startsWith('http') 
+        ? currentImagePath 
+        : `${siteUrl}${currentImagePath.startsWith('/') ? '' : '/'}${currentImagePath}`;
 
-  window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-};
+    const message = `*YENİ SİFARİŞ SORĞUSU* 🚲\n` +
+                    `_________________________\n\n` +
+                    `👋 Salam, mən bu velosipedi kirayə götürmək istəyirəm:\n\n` +
+                    `📍 *Model:* ${bike.model}\n` +
+                    `💰 *Şərtlər:* ${bike.desc}\n\n` +
+                    `🆔 *Məhsul ID:* #${bike.id}\n` +
+                    `_________________________\n\n` +
+                    `🖼️ *Məhsulun fotosu:* ${fullImageUrl}`;
 
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    // Animasiya müddəti
+    setTimeout(() => {
+      setStatus('success');
+      setTimeout(() => {
+        window.location.href = whatsappUrl;
+        setTimeout(() => setStatus('idle'), 3000);
+      }, 800);
+    }, 2800);
+  };
 
   return (
     <div className="bike-card" style={{ animationDelay: `${index * 0.1}s` }}>
       <div className="card-image-box">
-        <img src={bike.images[currentImg]} alt={bike.model} />
+        <AnimatePresence mode="wait">
+          <motion.img 
+            key={currentImg}
+            src={bike.images[currentImg]} 
+            alt={bike.model}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          />
+        </AnimatePresence>
       </div>
 
       <div className="arrow-controls">
@@ -93,9 +107,40 @@ const sendWhatsApp = () => {
           </div>
         </div>
 
-        <button onClick={sendWhatsApp} className="wp-button">
-          <MessageCircle size={18} />
-          <span className='tex'>MÜRACİƏT ET</span>
+        <button 
+          onClick={handleOrder} 
+          className={`wp-button ${status}`}
+          disabled={status !== 'idle'}
+        >
+          <AnimatePresence mode="wait">
+            {status === 'idle' && (
+              <motion.div key="idle" className="btn-content" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                <MessageCircle size={18} />
+                <span className='tex'>MÜRACİƏT ET</span>
+              </motion.div>
+            )}
+
+            {status === 'pedaling' && (
+              <motion.div key="pedaling" className="delivery-anim">
+                <motion.div 
+                  className="bike-icon"
+                  initial={{ x: -100 }}
+                  animate={{ x: 100 }}
+                  transition={{ duration: 2.5, ease: "linear", repeat: Infinity }}
+                >
+                  🚲
+                </motion.div>
+                <div className="road-line"></div>
+              </motion.div>
+            )}
+
+            {status === 'success' && (
+              <motion.div key="success" className="btn-content" initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                <CheckCircle size={18} />
+                <span>YÖNLƏNDİRİLİR...</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </button>
       </div>
     </div>

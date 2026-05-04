@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Navigation, Gauge, Zap, ShieldCheck, Smile, MessageCircle,Waves } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Zap, ShieldCheck, Smile, MessageCircle, Waves, CheckCircle } from 'lucide-react';
 import "./PresentBcycle.css";
 
 const bicycles = [
@@ -19,6 +20,7 @@ const bicycles = [
 
 const BicycleCard = ({ bike, index }) => {
   const [currentImg, setCurrentImg] = useState(0);
+  const [status, setStatus] = useState('idle'); // 'idle', 'ordering', 'redirect'
 
   const nextImg = (e) => {
     e.stopPropagation();
@@ -30,37 +32,58 @@ const BicycleCard = ({ bike, index }) => {
     setCurrentImg((prev) => (prev === 0 ? bike.images.length - 1 : prev - 1));
   };
 
-const sendWhatsApp = () => {
-  const phoneNumber = "+994509998281";
-  
-  // Bu sətir saytın o anki real linkini (hansı vercel linkidirsə onu) avtomatik götürür
-  const siteUrl = window.location.origin;
-  
-  const currentImagePath = bike.images[currentImg];
-  
-  // Şəklin linkini tam URL halına salırıq
-  const fullImageUrl = currentImagePath.startsWith('http') 
-      ? currentImagePath 
-      : `${siteUrl}${currentImagePath.startsWith('/') ? '' : '/'}${currentImagePath}`;
+  const handleOrder = () => {
+    if (status !== 'idle') return;
+    setStatus('ordering');
 
-  // Mesaj formatı (Şəklin linki ən sonda olmalıdır ki, WhatsApp preview tuta bilsin)
-  const message = `*YENİ SİFARİŞ SORĞUSU* 🚲\n` +
-                  `_________________________\n\n` +
-                  `👋 Salam, mən bu velosipedi kirayə götürmək istəyirəm:\n\n` +
-                  `📍 *Model:* ${bike.model}\n` +
-                  `💰 *Şərtlər:* ${bike.desc}\n\n` +
-                  `🆔 *Məhsul ID:* #${bike.id}\n` +
-                  `_________________________\n\n` +
-                  `🖼️ *Məhsulun fotosu:* ${fullImageUrl}`;
+    const phoneNumber = "994509998281";
+    const siteUrl = window.location.origin;
+    const currentImagePath = bike.images[currentImg];
+    const fullImageUrl = currentImagePath.startsWith('http') 
+        ? currentImagePath 
+        : `${siteUrl}${currentImagePath.startsWith('/') ? '' : '/'}${currentImagePath}`;
 
-  window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-};
+    const message = `*YENİ SADƏ VELOSİPED SORĞUSU* 🚲\n` +
+                    `_________________________\n\n` +
+                    `👋 Salam, bu velosipedi kirayə götürmək istəyirəm:\n\n` +
+                    `📍 *Model:* ${bike.model}\n` +
+                    `💰 *Məlumat:* ${bike.desc}\n\n` +
+                    `🆔 *ID:* #${bike.id}\n` +
+                    `_________________________\n\n` +
+                    `🖼️ *Foto:* ${fullImageUrl}`;
 
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    // 2.5 saniyəlik "Hamarlıq" animasiyası
+    setTimeout(() => {
+      setStatus('redirect');
+      setTimeout(() => {
+        window.location.href = whatsappUrl;
+        setTimeout(() => setStatus('idle'), 3000);
+      }, 800);
+    }, 2500);
+  };
 
   return (
-    <div className="bike-card" style={{ animationDelay: `${index * 0.1}s` }}>
+    <motion.div 
+      className="bike-card" 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.05 }}
+      viewport={{ once: true }}
+    >
       <div className="card-image-box">
-        <img src={bike.images[currentImg]} alt={bike.model} />
+        <AnimatePresence mode="wait">
+          <motion.img 
+            key={currentImg}
+            src={bike.images[currentImg]} 
+            alt={bike.model}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          />
+        </AnimatePresence>
       </div>
 
       <div className="arrow-controls">
@@ -73,32 +96,62 @@ const sendWhatsApp = () => {
         <h3 className="bike-title">{bike.model}</h3>
         <p className="bike-desc">{bike.desc}</p>
         
+        <div className="bike-vibe-tags">
+          <div className="vibe-tag">
+            <Zap size={14} className="vibe-icon" />
+            <span>Yüngül</span> 
+          </div>
+          <div className="vibe-tag">
+            <ShieldCheck size={14} className="vibe-icon" />
+            <span>Davamlı</span>
+          </div>
+          <div className="vibe-tag">
+            <Smile size={14} className="vibe-icon" />
+            <span>Rahat</span>
+          </div>
+          <div className="vibe-tag">
+            <Waves size={14} className="vibe-icon" />
+            <span>Modern</span>
+          </div>
+        </div>
 
-<div className="bike-vibe-tags">
-  <div className="vibe-tag">
-    <Zap size={14} className="vibe-icon" />
-    <span>Yüngül</span> 
-  </div>
-  <div className="vibe-tag">
-    <ShieldCheck size={14} className="vibe-icon" />
-    <span>Davamlı</span>
-  </div>
-  <div className="vibe-tag">
-    <Smile size={14} className="vibe-icon" />
-    <span>Rahat</span>
-  </div>
-  <div className="vibe-tag">
-  <Waves size={14} className="vibe-icon" />
-  <span>Modern</span>
-</div>
-</div>
+        <button 
+          onClick={handleOrder} 
+          className={`wp-button ${status}`}
+          disabled={status !== 'idle'}
+        >
+          <AnimatePresence mode="wait">
+            {status === 'idle' && (
+              <motion.div key="idle" className="btn-inner" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                <MessageCircle size={18} />
+                <span className='tex'>MÜRACİƏT ET</span>
+              </motion.div>
+            )}
 
-        <button onClick={sendWhatsApp} className="wp-button">
-          <MessageCircle size={18} />
-          <span className='tex'>MÜRACİƏT ET</span>
+            {status === 'ordering' && (
+              <motion.div key="ordering" className="smooth-ride">
+                <motion.div 
+                  className="moving-bike"
+                  initial={{ x: -80, opacity: 0 }}
+                  animate={{ x: 80, opacity: 1 }}
+                  transition={{ duration: 2, ease: "easeInOut", repeat: Infinity }}
+                >
+                  🚲
+                </motion.div>
+                <div className="road-path"></div>
+              </motion.div>
+            )}
+
+            {status === 'redirect' && (
+              <motion.div key="redirect" className="btn-inner" initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                <CheckCircle size={18} />
+                <span>KEÇİD EDİLİR...</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
