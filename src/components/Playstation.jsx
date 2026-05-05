@@ -42,9 +42,11 @@ const psData = [
   }
 ];
 
+// QEYD: Lazy loading sətiri burdan silindi!
+
 const PsCard = ({ data }) => {
   const [imgIndex, setImgIndex] = useState(0);
-  const [orderStatus, setOrderStatus] = useState('idle'); // 'idle', 'loading', 'done'
+  const [orderStatus, setOrderStatus] = useState('idle');
 
   const nextImg = () => setImgIndex((prev) => (prev + 1) % data.images.length);
   const prevImg = () => setImgIndex((prev) => (prev - 1 + data.images.length) % data.images.length);
@@ -54,7 +56,6 @@ const PsCard = ({ data }) => {
 
     setOrderStatus('loading');
 
-    // WhatsApp məlumatlarını hazırlayırıq
     const phoneNumber = "994509998281"; 
     const siteUrl = window.location.origin;
     const currentImagePath = data.images[imgIndex];
@@ -74,15 +75,11 @@ const PsCard = ({ data }) => {
 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-    // 3.5 saniyəlik maşın animasiyası başlayır
     setTimeout(() => {
       setOrderStatus('done');
 
-      // Animasiya bitdikdən 1 saniyə sonra mütləq yönləndirmə
       setTimeout(() => {
         window.location.href = whatsappUrl; 
-        
-        // Geri qayıdanda düymənin köhnə halına düşməsi üçün
         setTimeout(() => setOrderStatus('idle'), 3000);
       }, 1000);
     }, 3500);
@@ -91,24 +88,26 @@ const PsCard = ({ data }) => {
   return (
     <motion.div 
       className="ps-card"
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -15 }}
+      viewport={{ once: true, margin: "-100px" }} // Daha yumşaq yüklənmə
+      whileHover={{ y: -10, transition: { duration: 0.2 } }} // GPU dostu yüngül hərəkət
     >
       <div className="ps-slider">
         <AnimatePresence mode="wait">
           <motion.img 
             key={imgIndex}
             src={data.images[imgIndex]} 
-            initial={{ opacity: 0, scale: 0.9 }}
+            alt={`${data.title} konsolu şəkli - ${imgIndex + 1}`} // SEO və Accessibility Düzəlişi
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.1 }}
-            transition={{ duration: 0.4 }}
+            exit={{ opacity: 0, scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+            loading="lazy" // Gecikməli yükləmə aktiv edildi!
           />
         </AnimatePresence>
-        <button className="slide-btn prev" onClick={prevImg}>‹</button>
-        <button className="slide-btn next" onClick={nextImg}>›</button>
+        <button className="slide-btn prev" aria-label="Əvvəlki şəkil" onClick={prevImg}>‹</button> {/* Accessibility Düzəlişi */}
+        <button className="slide-btn next" aria-label="Növbəti şəkil" onClick={nextImg}>›</button> {/* Accessibility Düzəlişi */}
       </div>
 
       <div className="ps-info">
@@ -130,11 +129,11 @@ const PsCard = ({ data }) => {
           ))}
         </div>
 
-        {/* Kreativ Animasiyalı Düymə */}
         <button 
           className={`order-btn ${orderStatus}`} 
           onClick={handleOrder}
           disabled={orderStatus !== 'idle'}
+          aria-label="Sifariş düyməsi"
         >
           <AnimatePresence mode="wait">
             {orderStatus === 'idle' && (
@@ -176,6 +175,7 @@ export default function PsRental() {
         className="section-main-title"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
       >
         🎮 OYUN DÜNYASINA <span className="blue-neon">XOŞ GƏLDİNİZ</span>
       </motion.h1>

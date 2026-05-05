@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Navigation, Pagination } from 'swiper/modules';
@@ -47,7 +47,7 @@ const detailsData = [
   { id: 35, title: "Səs ucaldan (Kalonka)", desc: "Yüksək səs sisteminə malik dinamik.", price: "16 AZN", img: "/ceko/kalonka.webp" },
 ];
 
-const DetailCard = ({ item }) => {
+const DetailCard = React.memo(({ item }) => {
   const [status, setStatus] = useState('idle');
 
   const handleOrder = () => {
@@ -94,6 +94,7 @@ const DetailCard = ({ item }) => {
           className={`detail-order-btn ${status}`}
           onClick={handleOrder}
           disabled={status !== 'idle'}
+          aria-label={`${item.title} sifariş et`}
         >
           <AnimatePresence mode="wait">
             {status === 'idle' && (
@@ -108,6 +109,7 @@ const DetailCard = ({ item }) => {
                 <motion.div 
                   animate={{ rotate: 360 }}
                   transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                  style={{ display: 'inline-block' }} // iOS translate-x problemi üçün
                 >
                   <Settings size={22} />
                 </motion.div>
@@ -126,9 +128,18 @@ const DetailCard = ({ item }) => {
       </div>
     </div>
   );
-};
+});
 
 const Details = () => {
+  // SwiperSlide-ları memoize edirik ki, hər slide keçidində bütün siyahı yenidən render olunmasın
+  const renderedSlides = useMemo(() => {
+    return detailsData.map((item) => (
+      <SwiperSlide key={item.id}>
+        <DetailCard item={item} />
+      </SwiperSlide>
+    ));
+  }, []);
+
   return (
     <section className="details-section">
       <div className="details-header">
@@ -148,13 +159,15 @@ const Details = () => {
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={'auto'}
-          loop={false} // CRITICAL: Ram çökməsini kəsmək üçün loop ləğv edildi!
+          loop={false}
+          watchSlidesProgress={true} // iOS-da görünməyən slaydlara CPU gücü sərf etmir
+          updateOnWindowResize={true}
           coverflowEffect={{
             rotate: 0,
-            stretch: 0,
-            depth: 120, // Slider keçidini daha yumşaq edir
-            modifier: 2,
-            slideShadows: false, // Arxa kölgələri ləğv edərək GPU yükünü azaltdıq
+            stretch: -10, // Slaydların bir-birinin içinə girməsini azaldır (iOS dostu)
+            depth: 100,
+            modifier: 1.5,
+            slideShadows: false, // iOS-da kölgə render-ini bağlayırıq (donmanı kəsir)
           }}
           navigation={{
             nextEl: '.swiper-button-next-custom',
@@ -164,14 +177,10 @@ const Details = () => {
           modules={[EffectCoverflow, Navigation, Pagination]}
           className="details-swiper"
         >
-          {detailsData.map((item) => (
-            <SwiperSlide key={item.id}>
-              <DetailCard item={item} />
-            </SwiperSlide>
-          ))}
+          {renderedSlides}
           
-          <div className="swiper-button-prev-custom"><ChevronLeft /></div>
-          <div className="swiper-button-next-custom"><ChevronRight /></div>
+          <button className="swiper-button-prev-custom" aria-label="Əvvəlki slayd"><ChevronLeft /></button>
+          <button className="swiper-button-next-custom" aria-label="Növbəti slayd"><ChevronRight /></button>
         </Swiper>
       </div>
     </section>

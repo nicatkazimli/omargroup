@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Zap, ShieldCheck, Smile, MessageCircle, Waves, CheckCircle } from 'lucide-react';
 import "./PresentBcycle.css";
@@ -18,9 +18,9 @@ const bicycles = [
   { id: 12, model: "Bike12", desc: "Depozit - 0 AZN, Günlük rent - 5 AZN Yüksək keyfiyyətli alüminium şassiyə malik bike-lar ", images: ["/sadebike1.jpg", "/sadebike2.jpg" ] }, 
 ];
 
-const BicycleCard = ({ bike, index }) => {
+const BicycleCard = React.memo(({ bike, index }) => {
   const [currentImg, setCurrentImg] = useState(0);
-  const [status, setStatus] = useState('idle'); // 'idle', 'ordering', 'redirect'
+  const [status, setStatus] = useState('idle');
 
   const nextImg = (e) => {
     e.stopPropagation();
@@ -54,7 +54,6 @@ const BicycleCard = ({ bike, index }) => {
 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-    // 2.5 saniyəlik "Hamarlıq" animasiyası
     setTimeout(() => {
       setStatus('redirect');
       setTimeout(() => {
@@ -67,29 +66,33 @@ const BicycleCard = ({ bike, index }) => {
   return (
     <motion.div 
       className="bike-card" 
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05 }}
-      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: Math.min(index * 0.03, 0.15) }} // Delay limitləndi ki, mobildə gözlətməsin
+      viewport={{ once: true, margin: "-50px" }}
     >
+      
       <div className="card-image-box">
-        <AnimatePresence mode="wait">
-          <motion.img 
-            key={currentImg}
-            src={bike.images[currentImg]} 
-            alt={bike.model}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+        {bike.images.map((imgSrc, imgIndex) => (
+          <img 
+            key={imgIndex}
+            src={imgSrc} 
+            alt={`${bike.model} - ${imgIndex + 1}`}
+            loading="lazy"
+            decoding="async"
+            className={`gallery-img ${imgIndex === currentImg ? 'active' : ''}`}
           />
-        </AnimatePresence>
+        ))}
       </div>
 
       <div className="arrow-controls">
-        <button onClick={prevImg} className="arrow-btn"><ChevronLeft size={18} /></button>
+        <button onClick={prevImg} className="arrow-btn" aria-label="Əvvəlki şəkil">
+          <ChevronLeft size={18} />
+        </button>
         <span className="dot-indicator">{currentImg + 1} / {bike.images.length}</span>
-        <button onClick={nextImg} className="arrow-btn"><ChevronRight size={18} /></button>
+        <button onClick={nextImg} className="arrow-btn" aria-label="Növbəti şəkil">
+          <ChevronRight size={18} />
+        </button>
       </div>
 
       <div className="card-body">
@@ -119,6 +122,7 @@ const BicycleCard = ({ bike, index }) => {
           onClick={handleOrder} 
           className={`wp-button ${status}`}
           disabled={status !== 'idle'}
+          aria-label={`${bike.model} sifariş et`}
         >
           <AnimatePresence mode="wait">
             {status === 'idle' && (
@@ -135,6 +139,7 @@ const BicycleCard = ({ bike, index }) => {
                   initial={{ x: -80, opacity: 0 }}
                   animate={{ x: 80, opacity: 1 }}
                   transition={{ duration: 2, ease: "easeInOut", repeat: Infinity }}
+                  style={{ display: 'inline-block' }}
                 >
                   🚲
                 </motion.div>
@@ -153,17 +158,22 @@ const BicycleCard = ({ bike, index }) => {
       </div>
     </motion.div>
   );
-};
+});
 
 const PresentBcycle = () => {
+  // Kartları memoize edirik ki, lazım olmadıqca render döngüsünə girməsinlər
+  const renderedGrid = useMemo(() => {
+    return bicycles.map((bike, index) => (
+      <BicycleCard key={bike.id} bike={bike} index={index} />
+    ));
+  }, []);
+
   return (
     <section className="bicycle-section">
       <div className="container">
         <h2 className="section-title">SADƏ <span>VELOSİPEDLƏR</span></h2>
         <div className="bicycle-grid">
-          {bicycles.map((bike, index) => (
-            <BicycleCard key={bike.id} bike={bike} index={index} />
-          ))}
+          {renderedGrid}
         </div>
       </div>
     </section>

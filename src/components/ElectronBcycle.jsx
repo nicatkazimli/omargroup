@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Navigation, Gauge, MessageCircle, CheckCircle } from 'lucide-react';
 import "./ElectronBcycle.css";
 
 const bicycles = [
   { id: 1, model: "E-Bike1", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike1.jpg", "/ebike2.jpg" ] },
-  { id: 2, model: "E-Bike2", km: "140 km + ", speed: "max - 50 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike5.jpg", "/ebike4.jpg",] }, 
+  { id: 2, model: "E-Bike2", km: "140 km + ", speed: "max - 50 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike5.jpg", "/ebike4.jpg"] }, 
   { id: 3, model: "E-Bike3", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike8.jpg", "/ebike7.jpg" ]},
   { id: 4, model: "E-Bike4", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike9.jpg", "/ebike10.jpg" ]},
   { id: 5, model: "E-Bike5", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] },
@@ -26,7 +26,7 @@ const bicycles = [
   { id: 20, model: "E-Bike20", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike7.jpg", "/ebike8.jpg"] }
 ];
 
-const BicycleCard = ({ bike, index }) => {
+const BicycleCard = React.memo(({ bike, index }) => {
   const [currentImg, setCurrentImg] = useState(0);
   const [status, setStatus] = useState('idle'); // 'idle', 'pedaling', 'success'
 
@@ -62,7 +62,6 @@ const BicycleCard = ({ bike, index }) => {
 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-    // Animasiya müddəti
     setTimeout(() => {
       setStatus('success');
       setTimeout(() => {
@@ -73,25 +72,29 @@ const BicycleCard = ({ bike, index }) => {
   };
 
   return (
-    <div className="bike-card" style={{ animationDelay: `${index * 0.1}s` }}>
+    <div className="bike-card" style={{ animationDelay: `${Math.min(index * 0.03, 0.15)}s` }}>
+      {/* 🚀 Şəkil qalereyası CSS Opacity keçidi ilə tam stabil və hamar edildi */}
       <div className="card-image-box">
-        <AnimatePresence mode="wait">
-          <motion.img 
-            key={currentImg}
-            src={bike.images[currentImg]} 
-            alt={bike.model}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.05 }}
-            transition={{ duration: 0.3 }}
+        {bike.images.map((imgSrc, imgIndex) => (
+          <img 
+            key={imgIndex}
+            src={imgSrc} 
+            alt={`${bike.model} - ${imgIndex + 1}`}
+            loading="lazy"
+            decoding="async"
+            className={`gallery-img ${imgIndex === currentImg ? 'active' : ''}`}
           />
-        </AnimatePresence>
+        ))}
       </div>
 
       <div className="arrow-controls">
-        <button onClick={prevImg} className="arrow-btn"><ChevronLeft size={18} /></button>
+        <button onClick={prevImg} className="arrow-btn" aria-label="Əvvəlki şəkil">
+          <ChevronLeft size={18} />
+        </button>
         <span className="dot-indicator">{currentImg + 1} / {bike.images.length}</span>
-        <button onClick={nextImg} className="arrow-btn"><ChevronRight size={18} /></button>
+        <button onClick={nextImg} className="arrow-btn" aria-label="Növbəti şəkil">
+          <ChevronRight size={18} />
+        </button>
       </div>
 
       <div className="card-body">
@@ -111,6 +114,7 @@ const BicycleCard = ({ bike, index }) => {
           onClick={handleOrder} 
           className={`wp-button ${status}`}
           disabled={status !== 'idle'}
+          aria-label={`${bike.model} müraciət et`}
         >
           <AnimatePresence mode="wait">
             {status === 'idle' && (
@@ -127,6 +131,7 @@ const BicycleCard = ({ bike, index }) => {
                   initial={{ x: -100 }}
                   animate={{ x: 100 }}
                   transition={{ duration: 2.5, ease: "linear", repeat: Infinity }}
+                  style={{ display: 'inline-block' }}
                 >
                   🚲
                 </motion.div>
@@ -145,17 +150,22 @@ const BicycleCard = ({ bike, index }) => {
       </div>
     </div>
   );
-};
+});
 
 const ElectronBicycle = () => {
+  // 20 ədəd kartın boş yerə render olunub sistemi yormaması üçün memoize edirik
+  const renderedGrid = useMemo(() => {
+    return bicycles.map((bike, index) => (
+      <BicycleCard key={bike.id} bike={bike} index={index} />
+    ));
+  }, []);
+
   return (
     <section className="bicycle-section">
       <div className="container">
         <h2 className="section-title">ELEKTRON <span>VELOSİPEDLƏR</span></h2>
         <div className="bicycle-grid">
-          {bicycles.map((bike, index) => (
-            <BicycleCard key={bike.id} bike={bike} index={index} />
-          ))}
+          {renderedGrid}
         </div>
       </div>
     </section>

@@ -1,15 +1,17 @@
-/* 1. ANA FON VƏ BÖLMƏ */
+/* ==========================================================================
+   1. ANA FON VƏ BÖLMƏ (PERFORMANS OPTİMİZASİYALI)
+   ========================================================================== */
 .bicycle-section {
     padding: 80px 0;
     position: relative;
-   background: radial-gradient(circle at top right, #051524, #13051e) !important;
+    background: radial-gradient(circle at top right, #051524, #13051e) !important;
     background-image: 
         radial-gradient(at 0% 0%, #14021d 0px, transparent 100%),
         radial-gradient(at 100% 100%, #651d1d 0px, transparent 100%) !important;
     overflow: hidden;
 }
 
-/* Stardust effekti */
+/* Stardust effekti (will-change ilə GPU-ya ötürüldü) */
 .bicycle-section::before {
     content: "";
     position: absolute;
@@ -18,10 +20,11 @@
     top: -50%;
     left: -50%;
     background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-    opacity: 0.15;
-    animation: rotateBackground 120s linear infinite;
+    opacity: 0.12;
+    animation: rotateBackground 140s linear infinite;
     pointer-events: none;
     z-index: 0;
+    will-change: transform;
 }
 
 @keyframes rotateBackground {
@@ -35,7 +38,9 @@
     padding: 0 20px;
 }
 
-/* 2. GRID SİSTEMİ */
+/* ==========================================================================
+   2. GRID SİSTEMİ
+   ========================================================================== */
 .bicycle-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -44,84 +49,123 @@
     z-index: 2;
 }
 
-/* 3. KARTIN ƏSAS STİLİ */
+/* ==========================================================================
+   3. KARTIN ƏSAS STİLİ (iOS DOSTU)
+   ========================================================================== */
 .bike-card {
     background: rgba(255, 255, 255, 0.03) !important;
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 28px !important;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     position: relative;
-    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    
+    /* Hardware acceleration (Safari titrəməsini və donmasını kəsir) */
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: transform, border-color, box-shadow;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                border-color 0.4s ease, 
+                box-shadow 0.4s ease;
+}
 
+/* Cihaz dəstəkləyirsə şüşə blur effekti aktiv olur */
+@supports (backdrop-filter: blur(15px)) or (-webkit-backdrop-filter: blur(15px)) {
+    .bike-card {
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+    }
 }
 
 .bike-card:hover {
-    transform: translateY(-10px);
-    border-color: rgba(59, 130, 246, 0.5) !important;
+    transform: translateY(-8px) translate3d(0, 0, 0);
+    border-color: rgba(59, 130, 246, 0.4) !important;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* 4. ŞƏKİL QUTUSU (TAM STABİL ÖLÇÜ) */
+/* ==========================================================================
+   4. ŞƏKİL QUTUSU (TAM SABİT VƏ KƏSİLMƏYƏN ÖLÇÜ)
+   ========================================================================== */
 .card-image-box {
     position: relative;
     width: 100%;
-    /* Mütləq sabit hündürlük - Şəkillərin eyni görünməsi üçün */
-    height: 260px !important; 
+    height: 240px !important; /* Bütün şəkillər mütləq eyni hündürlükdə qalır */
     background: rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
     border-radius: 28px 28px 0 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
-.card-image-box img {
-    width: 100% !important;
-    height: 100% !important;
-    /* 'cover' şəkli tam doldurur və vizual bərabərlik yaradır */
-   object-position: center;
-   object-position: top center;
-    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-   padding: 14px;
- 
+/* Şəkil keçidlərində qırılmanı önləyən mütləq yerləşdirmə */
+.gallery-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 15px; /* Şəklin kənarlara yapışmaması üçün */
+    object-fit: contain !important; /* Şəklin kəsilmədən, tam görünməsi üçün mütləqdir */
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+    z-index: 1;
+    
+    will-change: opacity, transform;
 }
 
-.bike-card:hover .card-image-box img {
-    transform: scale(1.1);
+.gallery-img.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 2;
 }
 
-/* 5. OX İDARƏETMƏSİ */
+/* Kartın üzərinə gələndə yalnız aktiv şəklin böyüməsi */
+.bike-card:hover .gallery-img.active {
+    transform: scale(1.08) translate3d(0, 0, 0);
+}
+
+/* ==========================================================================
+   5. OX İDARƏETMƏSİ (SLIDER CONTROLS)
+   ========================================================================== */
 .arrow-controls {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 15px;
     padding: 12px 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .arrow-btn {
     background: rgba(255, 255, 255, 0.05);
     color: #3b82f6;
     border: 1px solid rgba(59, 130, 246, 0.3);
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
 }
 
 .arrow-btn:hover {
     background: #3b82f6;
     color: white;
     box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}
+
+.arrow-btn:active {
+    transform: scale(0.92);
 }
 
 .dot-indicator {
@@ -131,7 +175,9 @@
     letter-spacing: 1px;
 }
 
-/* 6. MƏLUMATLAR (BODY) */
+/* ==========================================================================
+   6. MƏLUMATLAR (BODY STRUCT)
+   ========================================================================== */
 .card-body {
     padding: 25px;
     flex-grow: 1;
@@ -144,387 +190,227 @@
     font-size: 20px;
     font-weight: 800;
     margin-bottom: 12px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Inter', sans-serif;
 }
 
 .bike-desc {
     color: #94a3b8;
     font-size: 14px;
     line-height: 1.6;
-    height: 90px; 
+    height: 70px; /* Sabit hündürlük ki, kartlar eyni hündürlükdə qalsın */
     overflow: hidden;
     margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
-.wp-button {
-    width: 100%;
-    padding: 18px; /* Bir az daha dolğun */
-    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%) !important;
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important; /* İncə kənar xətti */
-    border-radius: 16px;
-    font-weight: 800;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    
+
+/* ==========================================================================
+   7. VIBE TAGS HİSSƏSİ
+   ========================================================================== */
+.bike-vibe-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.vibe-tag {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 12px;
-    
-    position: relative;
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    
-    /* 🌟 Premium Kölgə (Layered Shadow) */
-    box-shadow: 
-        0 4px 15px rgba(37, 211, 102, 0.2),
-        inset 0 0 0 0 rgba(255, 255, 255, 0);
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-/* 🔥 Üzərinə gələndə (Hover) */
-.wp-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 
-        0 8px 25px rgba(37, 211, 102, 0.4),
-        inset 0 0 15px rgba(255, 255, 255, 0.3); /* Daxili parıltı */
-    letter-spacing: 3px; /* Yazı bir az genişlənir */
-}
-
-/* ✨ Düymənin içindən keçən İşıq Dalğası (Shine Effect) */
-.wp-button::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -60%;
-    width: 20%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.4);
-    transform: rotate(30deg);
-    transition: all 0.7s;
-    opacity: 0;
-}
-
-.wp-button:hover::after {
-    left: 140%;
-    opacity: 1;
-}
-
-/* ⚡️ Basanda (Active) */
-.wp-button:active {
-    transform: translateY(-1px) scale(0.98);
-}
-
-/* İkon animasiyası */
-.wp-button svg, .wp-button i {
-    transition: transform 0.4s ease;
-}
-
-.wp-button:hover svg, .wp-button:hover i {
-    transform: rotate(15deg) scale(1.2);
-}
-/* --- Vibe Tags Konteyneri --- */
-.bike-vibe-tags {
-  display: flex;
-  gap: 12px;
-  margin: 20px 0;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-
-/* --- Hər bir Tag-ın Əsas Stili --- */
-.vibe-tag {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  background: rgba(255, 255, 255, 0.03); /* Çox şəffaf fon */
-  border-radius: 50px; /* Tam oval forma */
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px); /* Şüşə effekti */
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-/* --- İkon Stili --- */
 .vibe-icon {
-  color: #ffcc00; /* Sənin brend rəngin (Qızılı/Sarı) */
-  filter: drop-shadow(0 0 5px rgba(255, 204, 0, 0.3));
-  transition: all 0.4s ease;
+    color: #ffcc00;
+    filter: drop-shadow(0 0 4px rgba(255, 204, 0, 0.2));
 }
 
-/* --- Yazı Stili --- */
 .vibe-tag span {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  color: rgba(255, 255, 255, 0.6);
-  transition: all 0.4s ease;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.6);
 }
-
-/* --- 🔥 HOVER EFFEKTLƏRİ (Kreativ Hissə) --- */
 
 .vibe-tag:hover {
-  background: rgba(255, 204, 0, 0.1); /* Sarımtıl parıltı */
-  border-color: rgba(255, 204, 0, 0.5);
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 
-              0 0 15px rgba(255, 204, 0, 0.1);
+    background: rgba(255, 204, 0, 0.08);
+    border-color: rgba(255, 204, 0, 0.4);
+    transform: translateY(-2px);
 }
 
-.vibe-tag:hover .vibe-icon {
-  color: #fff;
-  transform: rotate(15deg) scale(1.2);
-  filter: drop-shadow(0 0 10px #ffcc00);
-}
-
-.vibe-tag:hover span {
-  color: #fff;
-  letter-spacing: 2px; /* Yazı bir az genişlənir */
-}
-
-/* --- Arxa fonda kiçik bir "parıltı" keçidi (Glow) --- */
-.vibe-tag::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  transition: 0.5s;
-}
-
-.vibe-tag:hover::before {
-  left: 100%;
-}
-
-/* --- Mobil Uyğunluq --- */
-@media (max-width: 768px) {
-  .bike-vibe-tags {
-    gap: 8px;
-  }
-  .vibe-tag {
-    padding: 2px 4px;
-  }
-  .vibe-tag span {
-    font-size: 10px;
-  }
-  .bicycle-section{
-     background: radial-gradient(circle at top right, #051524, #13051e) !important;
-  }
-}
-
-/* Düymə daxilindəki ikonun ölçüsünü sabit saxlamaq üçün */
-.wp-button svg {
-    flex-shrink: 0;
-}
-
-.wp-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
-    filter: brightness(1.1);
-}
-/* 7. WHATSAPP DÜYMƏSİ */
+/* ==========================================================================
+   8. WHATSAPP DÜYMƏSİ VƏ SİFARİŞ ANİMASİYASI
+   ========================================================================== */
 .wp-button {
+    position: relative;
     width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%) !important;
+    height: 50px; /* Sabit hündürlük stabil animasiya üçün vacibdir */
+    border-radius: 14px;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
     color: white;
-    border: none !important;
-    border-radius: 15px;
-    font-weight: 900;
-    font-size: 13px;
+    font-weight: 800;
+    font-size: 12px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.4s ease;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-align: center;
-}
-.wp-button {
-  position: relative;
-  overflow: hidden;
-  height: 48px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 15px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.25);
 }
 
-.wp-button.ordering {
-  background: #f0f0f0; /* Animasiya zamanı fon rəngi dəyişir */
-}
-
-.btn-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: white;
-  font-weight: 600;
-}
-
-.smooth-ride {
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.moving-bike {
-  font-size: 20px;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-}
-
-.road-path {
-  position: absolute;
-  bottom: -8px;
-  width: 60%;
-  height: 2px;
-  background: #25d366;
-  opacity: 0.4;
-  border-radius: 50%; /* Hamar yol effekti */
-}
-
-.wp-button:disabled {
-  cursor: not-allowed;
-}
-
-
-.wp-button:hover {
-    transform: translateY(-3px);
+.wp-button:hover:not(:disabled) {
+    transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
     filter: brightness(1.1);
 }
 
-/* 8. RESPONSIVE */
-@media (max-width: 1400px) { .bicycle-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 1000px) { .bicycle-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 650px) { 
-    .bicycle-grid { grid-template-columns: 1fr; }
-    .bike-card { margin: 0 10px; }
-    .card-image-box { height: 220px !important; }
+.wp-button:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
 }
 
-/* GİRİŞ ANİMASİYASI */
-.bike-card {
-    animation: cardFadeIn 0.8s ease-out forwards;
+/* Animasiyalı order zamanı düymənin daxili fonu */
+.wp-button.ordering {
+    background: #1e1e1e !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    cursor: not-allowed;
 }
 
-@keyframes cardFadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+.btn-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
 }
-/* --- ELEKTRON VELOSİPEDLƏR Başlığı --- */
+
+.smooth-ride {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.moving-bike {
+    font-size: 22px;
+    z-index: 2;
+}
+
+.road-path {
+    position: absolute;
+    bottom: 12px;
+    width: 60%;
+    height: 2px;
+    background: #25d366;
+    opacity: 0.5;
+    border-radius: 50%;
+}
+
+/* ==========================================================================
+   9. SECTİON TITLE & SPECS (ELEKTRON VELOSİPED STİLİ İLƏ UYĞUNLUQ)
+   ========================================================================== */
 .section-title {
-    font-size: clamp(35px, 6vw, 85px);
-    font-weight: 950;
+    font-size: clamp(30px, 5vw, 65px);
+    font-weight: 900;
     text-align: center;
-    margin-bottom: 70px;
-    letter-spacing: -2px; /* Sıx və modern görünüş */
+    margin-bottom: 60px;
+    letter-spacing: -1px;
     text-transform: uppercase;
     color: #fff;
     position: relative;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-family: 'Inter', sans-serif;
 }
 
 .section-title span {
     display: inline-block;
-    background: linear-gradient(90deg, #00f2fe 0%, #4facfe 100%);
+    background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 15px rgba(79, 172, 254, 0.6));
-    animation: pulseGlow 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px rgba(37, 211, 102, 0.3));
 }
 
-/* Başlığın altına kreativ xətt */
 .section-title::after {
     content: '';
     display: block;
-    width: 80px;
-    height: 6px;
-    background: #4facfe;
-    margin: 15px auto;
+    width: 60px;
+    height: 5px;
+    background: #25d366;
+    margin: 15px auto 0;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(79, 172, 254, 0.8);
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
 }
 
-@keyframes pulseGlow {
-    0%, 100% { filter: drop-shadow(0 0 15px rgba(79, 172, 254, 0.6)); }
-    50% { filter: drop-shadow(0 0 30px rgba(79, 172, 254, 0.9)); transform: scale(1.02); }
-}
-/* --- KM və SPEED Göstəriciləri --- */
-.bike-specs {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 25px;
+/* ==========================================================================
+   10. RESPONSIVE OPTİMİZASİYASI
+   ========================================================================== */
+@media (max-width: 1400px) { 
+    .bicycle-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; } 
 }
 
-.spec {
-    flex: 1;
-    display: flex;
-    flex-direction: column; /* İkon yuxarıda, mətn aşağıda */
-    align-items: center;
-    justify-content: center;
-    padding: 12px 8px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
+@media (max-width: 1024px) { 
+    .bicycle-grid { grid-template-columns: repeat(2, 1fr); } 
+    .card-image-box { height: 220px !important; }
 }
 
-/* Spec daxilində ikon */
-.spec svg {
-    color: #4facfe;
-    margin-bottom: 6px;
-    filter: drop-shadow(0 0 5px rgba(79, 172, 254, 0.5));
+@media (max-width: 650px) { 
+    .bicycle-section { padding: 50px 0; }
+    .bicycle-grid { grid-template-columns: 1fr; gap: 30px; }
+    .bike-card { margin: 0 auto; max-width: 340px; }
+    .card-image-box { height: 200px !important; }
+    .section-title { margin-bottom: 40px; }
+    .bike-desc { height: auto; -webkit-line-clamp: unset; }
+}
+/* ==========================================================================
+   10. RESPONSIVE SİZİNLƏR (MOBİL & PLANŞET)
+   ========================================================================== */
+@media (max-width: 1400px) { 
+    .bicycle-grid { grid-template-columns: repeat(3, 1fr); } 
 }
 
-/* Spec daxilində mətn (km/speed) */
-.spec span {
-    color: #fff;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+@media (max-width: 1000px) { 
+    .bicycle-grid { grid-template-columns: repeat(2, 1fr); } 
 }
 
-/* Hover effekti - Kapsula parlasın */
-.bike-card:hover .spec {
-    background: rgba(79, 172, 254, 0.1);
-    border-color: rgba(79, 172, 254, 0.4);
-    transform: translateY(-5px);
-}
-
-/* Spec-in daxilində gizli bir parıltı (shimmer) */
-.spec::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-    opacity: 0;
-    transition: 0.5s;
-}
-
-.spec:hover::before {
-    opacity: 1;
+@media (max-width: 650px) { 
+    .bicycle-section { 
+        padding: 50px 0; 
+    }
+    .bicycle-grid { 
+        grid-template-columns: 1fr; 
+        gap: 30px; 
+        /* Ekranın sağından və solundan dəqiq 20px boşluq buraxır */
+        padding: 0 20px; 
+    }
+    .bike-card { 
+        /* Kartın enini 100% edirik ki, grid-in verdiyi 20px boşluğa tam uyğunlaşsın */
+        width: 100%; 
+        max-width: 100%; 
+        margin: 0 auto; 
+    }
+    .card-image-box { 
+        height: 220px !important; 
+    }
+    .section-title { 
+        margin-bottom: 40px; 
+    }
+    .bike-desc { 
+        height: auto; 
+        -webkit-line-clamp: unset; 
+    }
 }

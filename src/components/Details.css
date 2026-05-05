@@ -6,7 +6,7 @@
   position: relative;
 }
 
-/* Arxa fon üçün dekorativ parıltı */
+/* Arxa fon üçün dekorativ parıltı (iOS dostu sadələşdirilmiş) */
 .details-section::before {
   content: '';
   position: absolute;
@@ -14,8 +14,8 @@
   left: -10%;
   width: 40%;
   height: 40%;
-  background: radial-gradient(circle, rgba(0, 210, 255, 0.1) 0%, transparent 70%);
-  filter: blur(50px);
+  background: radial-gradient(circle, rgba(0, 210, 255, 0.08) 0%, transparent 70%);
+  filter: blur(40px);
   pointer-events: none;
 }
 
@@ -37,7 +37,7 @@
 
 .neon-text {
   color: #00d2ff;
-  text-shadow: 0 0 30px rgba(0, 210, 255, 0.8), 0 0 60px rgba(0, 210, 255, 0.3);
+  text-shadow: 0 0 20px rgba(0, 210, 255, 0.6);
   position: relative;
 }
 
@@ -59,69 +59,103 @@
   padding-bottom: 80px !important;
 }
 
-/* Swiper Slide Effektləri */
+/* --- SWIPER SLIDE EFFEKTLƏRİ (iOS üçün tam optimallaşdırıldı) --- */
 .swiper-slide {
   width: 320px;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: blur(8px) grayscale(100%);
-  opacity: 0.3;
-  transform: scale(0.8) translateY(30px);
+  /* Animasiyaları yalnız transform və opacity ilə məhdudlaşdırırıq */
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
+  opacity: 0.4;
+  transform: scale(0.85);
+  will-change: transform, opacity;
+  
+  /* Ağır blur və grayscale effektini yalnız desktop üçün saxlayırıq, mobil/safari-də ləğv edirik */
+  filter: none; 
+}
+
+/* Yalnız böyük və güclü ekranlarda blur effekti işləsin */
+@media (min-width: 1025px) {
+  .swiper-slide {
+    filter: blur(4px);
+  }
+  .swiper-slide-active {
+    filter: blur(0px) !important;
+  }
 }
 
 .swiper-slide-active {
-  filter: blur(0px) grayscale(0%);
   opacity: 1;
-  transform: scale(1.05) translateY(0);
+  transform: scale(1.03);
   z-index: 10;
 }
 
 /* Premium Card Dizaynı */
 .premium-detail-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(15px);
+  background: rgba(20, 20, 20, 0.9); /* Qatı fon iOS-da süzgəci (blur) əvəz edir */
   border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
   overflow: hidden;
-  transition: border 0.3s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
+  
+  /* GPU Sürətləndirmə elementləri */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: border-color, box-shadow;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Cihaz dəstəkləyirsə şüşə (blur) effekti aktiv olsun */
+@supports (backdrop-filter: blur(15px)) or (-webkit-backdrop-filter: blur(15px)) {
+  .premium-detail-card {
+    background: rgba(255, 255, 255, 0.02);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+  }
 }
 
 .swiper-slide-active .premium-detail-card {
   border: 1px solid rgba(0, 210, 255, 0.4);
-  box-shadow: 0 0 30px rgba(0, 210, 255, 0.15);
+  box-shadow: 0 0 25px rgba(0, 210, 255, 0.15);
 }
 
-/* Şəkil Hissəsi - BURADA DÜZƏLİŞ EDİLDİ */
+/* Şəkil Hissəsi */
 .detail-img-wrapper {
   position: relative;
   width: 100%;
   height: 220px;
-  padding: 15px; /* Şəklin kənarlardan məsafəsi */
-  background: rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .detail-img-wrapper img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Şəkil kəsilmir, tam görünür */
-  transition: transform 0.5s ease;
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+  object-fit: contain;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.4));
+  
+  /* GPU-nu şəkil böyüməsi üçün hazırlayırıq */
+  will-change: transform;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 .swiper-slide-active .detail-img-wrapper img {
-  transform: scale(1.1) rotate(2deg);
+  transform: scale(1.08) rotate(1deg); /* Daha yüngül scale (1.1-dən 1.08-ə) */
 }
 
 /* Qiymət Badge */
 .price-badge {
   position: absolute;
-  bottom: -15px;
+  bottom: 15px;
   right: 20px;
   background: #00d2ff;
   color: #000;
@@ -129,7 +163,7 @@
   border-radius: 12px;
   font-weight: 900;
   font-size: 1rem;
-  box-shadow: 0 10px 20px rgba(0, 210, 255, 0.4);
+  box-shadow: 0 8px 16px rgba(0, 210, 255, 0.3);
   z-index: 2;
 }
 
@@ -156,7 +190,8 @@
   line-height: 1.6;
   margin-bottom: 25px;
 }
-/* Düymənin daxili quruluşunu stabilləşdiririk */
+
+/* --- DÜYMƏ STRUKTURU VƏ ANIMASİYALARI --- */
 .detail-order-btn {
   width: 100%;
   height: 52px;
@@ -168,72 +203,15 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
-  
-  /* Mərkəzləmə üçün əlavə */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0; /* Artıq boşluqları silirik */
-}
-
-.btn-flex, .fixing-anim {
-  display: flex;
-  flex-direction: row; /* Yan-yana olsunlar */
-  align-items: center; /* Vertikal olaraq tam mərkəz */
-  justify-content: center; /* Horizontal olaraq tam mərkəz */
-  gap: 10px; /* İkon və mətn arasındakı məsafə */
-  width: 100%;
-  height: 100%;
-}
-
-/* Lucide ikonun (SVG) stabilləşdirilməsi */
-.btn-flex svg, 
-.fixing-anim svg {
-  display: block; /* İnline-block-dan yaranan alt boşluğu silir */
-  flex-shrink: 0; /* İkonun sıxılmasının qarşısını alır */
-}
-
-/* Mətnin yuxarı qaçmasının qarşısını almaq üçün */
-.btn-flex span {
-  display: inline-block;
-  line-height: 1; /* Mətnin öz hündürlüyünü sıfırlayırıq ki, flex onu tam mərkəzləsin */
-  margin: 0;
   padding: 0;
-}
-.premium-detail-card {
-  /* ... mövcud css kodların ... */
-  will-change: transform, opacity; /* Brauzerə öncədən xəbərdarlıq edir */
-  transform: translateZ(0); /* GPU 3D sürətləndirməni aktiv edir */
-  backface-visibility: hidden; /* Sürüşmə zamanı arxa fon titrəməsini kəsir */
-}
-
-.detail-img-wrapper img {
-  /* ... mövcud css kodların ... */
-  will-change: transform;
-  transform: translateZ(0);
-}
-.gear-icon {
-  transition: transform 0.5s ease;
-}
-
-/* Hover animasiyası */
-.detail-order-btn:hover .gear-icon {
-  transform: rotate(90deg);
-}
-/* Animasiyalı Sifariş Düyməsi */
-.detail-order-btn {
-  width: 100%;
-  height: 52px;
-  border-radius: 14px;
-  border: 1px solid rgba(0, 210, 255, 0.3);
-  background: transparent;
-  color: #fff;
-  font-weight: 700;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
+  
+  /* iOS-da klik gecikməsini və göy kölgəni silir */
+  -webkit-tap-highlight-color: transparent;
+  will-change: background-color, border-color, box-shadow;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 }
 
 .detail-order-btn::before {
@@ -243,18 +221,20 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: 0.5s;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: transform 0.5s ease;
 }
 
+/* Hover zamanı iOS Safari-də titrəmə olmasın deyə sadə rəng dəyişimi */
 .detail-order-btn:hover {
   background: #00d2ff;
   color: #000;
-  box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+  border-color: #00d2ff;
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
 }
 
 .detail-order-btn:hover::before {
-  left: 100%;
+  transform: translateX(200%);
 }
 
 .detail-order-btn.fixing {
@@ -262,7 +242,38 @@
   border-color: #444;
 }
 
-/* Custom Navigation (Mobil Üçün Optimizasiya) */
+.btn-flex, .fixing-anim {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-flex svg, 
+.fixing-anim svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+.btn-flex span {
+  display: inline-block;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.gear-icon {
+  transition: transform 0.4s ease;
+}
+
+.detail-order-btn:hover .gear-icon {
+  transform: rotate(90deg);
+}
+
+/* Custom Navigation */
 .swiper-button-prev-custom, .swiper-button-next-custom {
   position: absolute;
   top: 50%;
@@ -270,6 +281,7 @@
   width: 55px;
   height: 55px;
   background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
@@ -279,13 +291,13 @@
   justify-content: center;
   z-index: 100;
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
 .swiper-button-prev-custom:hover, .swiper-button-next-custom:hover {
   background: #00d2ff;
   color: #000;
-  box-shadow: 0 0 25px rgba(0, 210, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
 }
 
 .swiper-button-prev-custom { left: 5%; }
@@ -301,9 +313,10 @@
   background: #00d2ff !important;
   width: 25px !important;
   border-radius: 10px !important;
+  transition: width 0.3s ease;
 }
 
-/* MOBİL VERSİYA (FULL OPTİMİZASİYA) */
+/* --- RESPONSIVE OPTİMİZASİYASI --- */
 @media (max-width: 1024px) {
   .swiper-button-prev-custom { left: 2%; }
   .swiper-button-next-custom { right: 2%; }
@@ -313,9 +326,8 @@
   .details-section { padding: 60px 0; }
   
   .swiper-slide {
-    width: 280px;
-    filter: blur(0px) grayscale(0%);
-    opacity: 0.6;
+    width: 260px !important; /* Mobildə en bir qədər azaldıldı */
+    opacity: 0.5;
     transform: scale(0.9);
   }
 
@@ -325,14 +337,15 @@
   }
 
   .swiper-button-prev-custom, .swiper-button-next-custom {
-    display: none; /* Mobildə swipe daha önəmlidir */
+    display: none !important; /* Mobildə lazımsız düymələri tamamilə silirik */
   }
 
   .detail-img-wrapper { height: 180px; }
-  
   .details-header h2 { font-size: 2.2rem; }
 }
 
 @media (max-width: 480px) {
-  .swiper-slide { width: 85vw; }
+  .swiper-slide { 
+    width: 250px !important; /* Slaydın ekran kənarlarından aşmaması üçün optimal ölçü */
+  }
 }
