@@ -366,6 +366,27 @@
     position: relative;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+.section-title span {
+    display: inline-block;
+    /* Yaşıl çalarları tamamilə çıxarıb, neon mavi və firuzəyi keçidi tətbiq edirik */
+    background: linear-gradient(90deg, #00f2fe 0%, #00b4d8 50%, #4facfe 100%) !important;
+    
+    /* Mətni gradientlə kəsmək üçün vacib brauzer prefiksləri */
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    
+    /* Mobil Safari-də rəngin qaralmasının və ya yaşıl görünməsinin qarşısını alan mütləq qayda */
+    text-fill-color: transparent !important; 
+    
+    /* Neon parıltı effekti (Drop shadow) */
+    filter: drop-shadow(0 0 12px rgba(0, 242, 254, 0.6)) drop-shadow(0 0 25px rgba(79, 172, 254, 0.3)) !important;
+    animation: pulseGlow 3s ease-in-out infinite;
+    
+    /* Render xətalarını önləmək üçün hardware acceleration */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
 
 .section-title span {
     display: inline-block;
