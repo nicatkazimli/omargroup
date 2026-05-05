@@ -26,7 +26,7 @@ const detailsData = [
   { id: 12, title: "Polad oxlar", desc: "Arxa disk üçün Almaniya istehsalı qırılmayan polad oxlar.", price: "6 AZN", img: "/ceko/ox.webp" },
   { id: 13, title: "Top", desc: "Orta top, tam keyfiyyətli, Almaniya məhsulu.", price: "10 AZN", img: "/ceko/top.webp" },
   { id: 14, title: "Oturacaq (Sade)", desc: "Tam keyfiyyətli velosiped oturacağı.", price: "12 AZN", img: "/ceko/oturacaq.webp" },
-  { id: 15, title: "Oturacaq (Komfort)", desc: "Tam keyfiyyətli və rahat oturacaq.", price: "18 AZN", img: "/ceko/oturacaq1.webp" },
+  { id: 15, title: "Oturacaq (Komfort)", desc: "Tam keyfiyyətli və rahat oturacaq.", price: "18 AZN", img: "/ceko/oturacak1.webp" },
   { id: 16, title: "Şatun (Shimano)", desc: "Original Shimano, 3 dişli, tam keyfiyyətli, Almaniya məhsulu.", price: "22 AZN", img: "/ceko/satun1.webp" },
   { id: 17, title: "Arxa ötürücü", desc: "Arxa 7-lik sürət ötürücüsü.", price: "12 AZN", img: "/ceko/oturucu.webp" },
   { id: 18, title: "Əyləc (Tormoz)", desc: "Sürətli velosipedlər üçün arxa əyləc sistemi.", price: "6 AZN", img: "/ceko/tormuz.webp" },
@@ -40,7 +40,7 @@ const detailsData = [
   { id: 27, title: "Sürət dəyişdirən", desc: "7-lik sürət dəyişdirən qol.", price: "18 AZN", img: "/ceko/skorusdeyisdiren.webp" },
   { id: 28, title: "Sürət dəyişdirən dəsti", desc: "3/7 sürət ötürücü dəyişdiriciləri.", price: "22 AZN", img: "/ceko/skorusdeyisdiren1.webp" },
   { id: 29, title: "Telefon qabı (Çantalı)", desc: "Sumkalı (çantalı) telefon qabı.", price: "14 AZN", img: "/ceko/telefonqabi21.webp" },
-  { id: 30, title: "Sükan hündürləşdirən", desc: "Tam keyfiyyətli sükan (rol) hündürləşdirən.", price: "12 AZN", img: "/ceko/rol.webp" },
+  { id: 30, title: "Sükan hündürləşdirən", desc: "Tam keyfiyyətli sükаn (rol) hündürləşdirən.", price: "12 AZN", img: "/ceko/rol.webp" },
   { id: 31, title: "Dayaq (İkiayaqlı)", desc: "Dəmirdən hazırlanmış ikiayaqlı dayaq (stayak).", price: "18 AZN", img: "/ceko/stayak2.webp" },
   { id: 33, title: "Qoruyucu dəst", desc: "Ayaq və qol üçün qoruyucu vasitələr.", price: "16 AZN", img: "/ceko/qoruyucu.webp" },
   { id: 34, title: "İşıq dəsti", desc: "Mavi və qırmızı rəngli işıqlandırma.", price: "12 AZN", img: "/ceko/isiq.webp" },
@@ -144,20 +144,17 @@ const Details = () => {
 
       <div className="slider-container">
         <Swiper
-          // React xətalarını aradan qaldırmaq üçün konfiqurasiya
-          // Boolean dəyərlər yerinə bəzi versiyalarda string tələb oluna bilər, 
-          // amma ən yaxşısı DOM-a sızan lazımsız propları təmizləməkdir.
           effect={'coverflow'}
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={'auto'}
-          loop={true}
+          loop={false} // CRITICAL: Ram çökməsini kəsmək üçün loop ləğv edildi!
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
-            depth: 150,
-            modifier: 2.5,
-            slideShadows: false,
+            depth: 120, // Slider keçidini daha yumşaq edir
+            modifier: 2,
+            slideShadows: false, // Arxa kölgələri ləğv edərək GPU yükünü azaltdıq
           }}
           navigation={{
             nextEl: '.swiper-button-next-custom',
