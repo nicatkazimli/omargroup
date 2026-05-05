@@ -1,0 +1,308 @@
+/* ==========================================================================
+   MOTO TRAINING SECTION - ULTRA PREMIUM NEON STYLE
+   ========================================================================== */
+
+.training-section {
+  background: radial-gradient(circle at 50% 0%, #0c1017 0%, #05070a 100%);
+  padding: 80px 4% 120px;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fon bəzəyi - Böyük arxa neon dairə */
+.training-section::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Header dizaynı */
+.training-header {
+  text-align: center;
+  margin-bottom: 70px;
+  position: relative;
+  z-index: 2;
+}
+
+.header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 242, 254, 0.1);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  color: #00f2fe;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
+}
+
+.training-header h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.neon-cyan {
+  color: #00f2fe;
+  text-shadow: 0 0 20px rgba(0, 242, 254, 0.6), 0 0 40px rgba(0, 242, 254, 0.2);
+}
+
+.header-subtitle {
+  color: #8fa0b5;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Kartlar Grid-i */
+.training-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   ULTRA MEGA CARD STYLE
+   ========================================================================== */
+
+.premium-training-card {
+  background: rgba(13, 20, 30, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Kartın arxa fondakı gradient parıltısı */
+.premium-training-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0) 40%, rgba(0, 242, 254, 0.2) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+.premium-training-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: rgba(0, 242, 254, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 242, 254, 0.1), 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+.premium-training-card:hover::before {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.5) 0%, rgba(79, 172, 254, 0.1) 100%);
+}
+
+/* Video Bölməsi */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Nisbəti */
+  background: #040609;
+  overflow: hidden;
+}
+
+.training-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 350px;
+  
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.premium-training-card:hover .training-video {
+  transform: scale(1.05);
+}
+
+/* Video üzərindəki hərəkət düyməsi */
+.video-overlay-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 242, 254, 0.2);
+  border: 1px solid rgba(0, 242, 254, 0.5);
+  color: #00f2fe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+}
+
+.premium-training-card:hover .video-overlay-btn {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.video-overlay-btn:hover {
+  background: #00f2fe;
+  color: #040609;
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.8);
+}
+
+.video-overlay-btn.playing {
+  background: rgba(4, 6, 9, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  opacity: 0.3; /* Video oynayanda gözü yormasın, gizli qalsın */
+}
+
+.video-overlay-btn.playing:hover {
+  opacity: 1;
+  background: #ffffff;
+  color: #040609;
+}
+
+/* Badges (Nişanlar) */
+.card-badge {
+  position: absolute;
+  z-index: 5;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.level-badge {
+  top: 15px;
+  left: 15px;
+  background: rgba(0, 242, 254, 0.15);
+  border: 1px solid rgba(0, 242, 254, 0.4);
+  color: #00f2fe;
+}
+
+.duration-badge {
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* Kartın daxili mətnləri */
+.card-info {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.student-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.award-icon {
+  color: #00f2fe;
+  filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.6));
+}
+
+.student-header h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.premium-training-card:hover .student-header h3 {
+  color: #00f2fe;
+}
+
+.student-desc {
+  font-size: 0.92rem;
+  color: #8fa0b5;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  flex-grow: 1;
+}
+
+/* Kartın alt dekor elementi */
+.card-footer-decor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 15px;
+}
+
+.decor-line {
+  flex-grow: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), rgba(0, 242, 254, 0.3), rgba(255, 255, 255, 0.05));
+  margin: 0 15px;
+}
+
+.shield-icon {
+  color: rgba(0, 242, 254, 0.3);
+  transition: all 0.3s ease;
+}
+
+.premium-training-card:hover .shield-icon {
+  color: #00f2fe;
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 5px rgba(0, 242, 254, 0.5));
+}
+
+/* Mobil tənzimləmə */
+@media (max-width: 768px) {
+  .training-section {
+    padding: 60px 5% 80px;
+  }
+  .training-grid {
+    gap: 25px;
+  }
+}

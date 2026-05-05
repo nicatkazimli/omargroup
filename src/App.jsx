@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import Header from './components/Header';
 import './App.css';
+import Training from './components/Training';
 
 // Komponentləri Lazy olaraq import edirik
 const ElectronBcycle = lazy(() => import('./components/ElectronBcycle'));
@@ -53,6 +54,10 @@ function App() {
 
           <section id="playstation">
             <Playstation />
+          </section>
+
+          <section id="training">
+            <Training />
           </section>
 
         </Suspense>

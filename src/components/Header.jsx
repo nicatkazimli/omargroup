@@ -16,7 +16,8 @@ const Header = () => {
     { id: "wolt", name: "Wolt Qeydiyyat", icon: "https://img.icons8.com/?size=100&id=n1vMT3Sf4T2c&format=png&color=000000" },
     { id: "about", name: "Komandamız", icon: "https://img.icons8.com/?size=100&id=b3pmakv2kPti&format=png&color=000000" },
     { id: "details", name: "Ehtiyyat Hissələri", icon: "https://img.icons8.com/?size=100&id=26293&format=png&color=000000" },
-    { id: "contact", name: "Bizimlə Əlaqə", icon: "https://img.icons8.com/?size=100&id=pHLee504uOZJ&format=png&color=000000" }
+    { id: "contact", name: "Bizimlə Əlaqə", icon: "https://img.icons8.com/?size=100&id=pHLee504uOZJ&format=png&color=000000" },
+    { id: "training", name: "Təlim", icon: "https://img.icons8.com/?size=100&id=49453&format=png&color=000000" }
   ];
 
   return (
