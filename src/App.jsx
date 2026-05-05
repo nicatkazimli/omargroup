@@ -15,7 +15,26 @@ const Playstation = lazy(() => import('./components/Playstation'));
 // Yüklənmə zamanı görünəcək sadə bir placeholder (istəyə görə spinner qoya bilərsən)
 const PageLoader = () => (
   <div style={{ height: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#00ff00' }}>
-    <div className="loader">Yüklənir...</div>
+   <div className="omar-loader-container">
+  <div className="loader-wrapper">
+    {/* Üst tərəfdə neon parıldayan loqo mətni */}
+    <h1 className="loader-logo">
+      {"OMAR GROUP".split("").map((char, index) => (
+        <span key={index} style={{ animationDelay: `${index * 0.1}s` }}>
+          {char === " " ? "\u00A0" : char}
+        </span>
+      ))}
+    </h1>
+    
+    {/* Alt tərəfdə ultra-sürətli yüklənmə xətti */}
+    <div className="loader-bar-wrapper">
+      <div className="loader-bar-progress"></div>
+      <div className="loader-bar-glow"></div>
+    </div>
+    
+    <span className="loader-subtext">YÜKLƏNİR</span>
+  </div>
+</div>
   </div>
 );
 

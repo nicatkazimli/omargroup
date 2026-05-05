@@ -1,0 +1,133 @@
+/* ==========================================================================
+   OMAR GROUP PREMIUM LOADER CSS
+   ========================================================================== */
+.omar-loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #030308; /* Tam qaranlıq, dərin kosmik fon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999; /* Hər şeyin ən üstündə durması üçün */
+    overflow: hidden;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Loader daxilində fırlanan dumanlı arxa fon effekti */
+.omar-loader-container::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, transparent 70%);
+    filter: blur(50px);
+    animation: pulseDuman 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.loader-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    position: relative;
+    z-index: 10;
+}
+
+/* 1. HƏRFLƏRİN TƏK-TƏK PARILDAMASI (OMAR GROUP) */
+.loader-logo {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 950;
+    letter-spacing: 6px;
+    color: rgba(255, 255, 255, 0.1); /* Default sönük rəng */
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.loader-logo span {
+    display: inline-block;
+    animation: waveGlow 2s ease-in-out infinite;
+    text-shadow: 0 0 0px transparent;
+}
+
+@keyframes waveGlow {
+    0%, 100% {
+        color: rgba(255, 255, 255, 0.1);
+        text-shadow: 0 0 0px transparent;
+        transform: translateY(0);
+    }
+    50% {
+        color: #00f2fe; /* Neon Mavi */
+        text-shadow: 0 0 10px #00f2fe, 0 0 25px #4facfe;
+        transform: translateY(-5px); /* Yüngülcə yuxarı qalxma */
+    }
+}
+
+/* 2. NEON SÜRƏT XƏTTİ (LOADER BAR) */
+.loader-bar-wrapper {
+    position: relative;
+    width: 240px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.loader-bar-progress {
+    position: absolute;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #00f2fe, #4facfe, transparent);
+    animation: progressMoving 1.8s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+    border-radius: 10px;
+}
+
+/* Xəttin altına düşən neon işıq kölgəsi */
+.loader-bar-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.8);
+    opacity: 0.6;
+    animation: pulseGlowLine 1.8s infinite;
+}
+
+@keyframes progressMoving {
+    0% { left: -100%; }
+    50% { left: 0%; }
+    100% { left: 100%; }
+}
+
+@keyframes pulseGlowLine {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.9; }
+}
+
+/* 3. ALTDAN GƏLƏN SÖNÜB-YANAN YÜKLƏNİR YAZISI */
+.loader-subtext {
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    opacity: 0.6;
+    animation: pulseSubtext 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseSubtext {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; letter-spacing: 6px; color: #00f2fe; }
+}
+
+@keyframes pulseDuman {
+    0%, 100% { transform: scale(1) translate3d(0,0,0); opacity: 0.5; }
+    50% { transform: scale(1.3) translate3d(0,0,0); opacity: 0.8; }
+}

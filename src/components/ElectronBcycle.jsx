@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, Navigation, Gauge, MessageCircle, CheckCircl
 import "./ElectronBcycle.css";
 
 const bicycles = [
-  { id: 1, model: "E-Bike1", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike1.jpg", "/ebike2.jpg" ] },
+  { id: 1, model: "E-Bike1", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike2.jpg", "/ebike1.jpg" ] },
   { id: 2, model: "E-Bike2", km: "140 km + ", speed: "max - 50 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike5.jpg", "/ebike4.jpg"] }, 
   { id: 3, model: "E-Bike3", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike8.jpg", "/ebike7.jpg" ]},
   { id: 4, model: "E-Bike4", km: "120 km+", speed: " max - 45 km/h", desc: "Depozit - 50 AZN, Günlük rent - 12 AZN Üzərində telefon qabları və Killik olur. Əlavə olaraq hamısında Gps olur. ", images: ["/ebike9.jpg", "/ebike10.jpg" ]},
@@ -153,7 +153,6 @@ const BicycleCard = React.memo(({ bike, index }) => {
 });
 
 const ElectronBicycle = () => {
-  // 20 ədəd kartın boş yerə render olunub sistemi yormaması üçün memoize edirik
   const renderedGrid = useMemo(() => {
     return bicycles.map((bike, index) => (
       <BicycleCard key={bike.id} bike={bike} index={index} />
