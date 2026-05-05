@@ -26,7 +26,7 @@ const detailsData = [
   { id: 12, title: "Polad oxlar", desc: "Arxa disk üçün Almaniya istehsalı qırılmayan polad oxlar.", price: "6 AZN", img: "/ceko/ox.webp" },
   { id: 13, title: "Top", desc: "Orta top, tam keyfiyyətli, Almaniya məhsulu.", price: "10 AZN", img: "/ceko/top.webp" },
   { id: 14, title: "Oturacaq (Sade)", desc: "Tam keyfiyyətli velosiped oturacağı.", price: "12 AZN", img: "/ceko/oturacaq.webp" },
-  { id: 15, title: "Oturacaq (Komfort)", desc: "Tam keyfiyyətli və rahat oturacaq.", price: "18 AZN", img: "/ceko/oturacak1.webp" },
+  { id: 15, title: "Oturacaq (Komfort)", desc: "Tam keyfiyyətli və rahat oturacaq.", price: "18 AZN", img: "/ceko/oturacaq1.webp" },
   { id: 16, title: "Şatun (Shimano)", desc: "Original Shimano, 3 dişli, tam keyfiyyətli, Almaniya məhsulu.", price: "22 AZN", img: "/ceko/satun1.webp" },
   { id: 17, title: "Arxa ötürücü", desc: "Arxa 7-lik sürət ötürücüsü.", price: "12 AZN", img: "/ceko/oturucu.webp" },
   { id: 18, title: "Əyləc (Tormoz)", desc: "Sürətli velosipedlər üçün arxa əyləc sistemi.", price: "6 AZN", img: "/ceko/tormuz.webp" },
