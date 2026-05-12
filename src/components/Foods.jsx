@@ -133,7 +133,7 @@ const Food = () => {
   ];
 
   const handleWhatsApp = (product) => {
-    const phoneNumber = "994XXXXXXXXX"; // Bura öz nömrəni yaz
+    const phoneNumber = "+994509998281"; // Bura öz nömrəni yaz
     const message = `Salam OMAR GROUP! Sizin saytınızdan bu məhsul haqqında məlumat almaq istəyirəm:\n\n🍀 Məhsul: ${product.title}\n📂 Kateqoriya: ${product.category}`;
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
   };
