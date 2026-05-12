@@ -132,22 +132,27 @@ const Food = () => {
   ];
 
 const handleWhatsApp = (product) => {
-    const phoneNumber = "+994509998281"; // OMAR GROUP nömrəsi
-    
-    // Mesajın formatlanması (Daha dolğun və səliqəli)
-    const message = 
-      `Salam OMAR GROUP! 👋\n` +
-      `Aşağıdakı məhsul haqqında məlumat almaq istəyirəm:\n\n` +
-      `🆔 *Məhsul ID:* #${product.id}\n` +
-      `🍀 *Adı:* ${product.title}\n` +
-      `📂 *Kateqoriya:* ${product.category}\n` +
-      `📝 *Təsvir:* ${product.desc}\n\n` +
-      `Hörmətlə, saytınızın müştərisi.`;
+  const phoneNumber = "+994509998281";
+  
+  // Şəklin tam URL-ni alırıq (Saytın linkini bura əlavə etməlisən)
+  // Əgər lokalda yoxlayırsansa, şəkli WhatsApp görməyəcək. 
+  // Amma deploy edəndən sonra saytın adını (məs: https://omargroup.az) bura qoymalısan.
+  const siteURL = window.location.origin; 
+  const productImageURL = `${siteURL}${product.images[0]}`;
 
-    // URL-i kodlaşdır və WhatsApp-ı aç
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappURL, '_blank');
-  };
+  const message = 
+    `Salam OMAR GROUP! 👋\n` +
+    `Aşağıdakı məhsul haqqında məlumat almaq istəyirəm:\n\n` +
+    `🆔 *Məhsul ID:* #${product.id}\n` +
+    `🍀 *Adı:* ${product.title}\n` +
+    `📂 *Kateqoriya:* ${product.category}\n` +
+    `📝 *Təsvir:* ${product.desc}\n\n` +
+    `🖼️ *Məhsul Şəkli:* ${productImageURL}\n\n` + // Şəkil linki
+    `Hörmətlə, saytınızın müştərisi.`;
+
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  window.open(whatsappURL, '_blank');
+};
 
   return (
     <div className="food-section">
