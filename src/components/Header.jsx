@@ -17,7 +17,8 @@ const Header = () => {
     { id: "about", name: "Komandamız", icon: "https://img.icons8.com/?size=100&id=b3pmakv2kPti&format=png&color=000000" },
     { id: "details", name: "Ehtiyyat Hissələri", icon: "https://img.icons8.com/?size=100&id=26293&format=png&color=000000" },
     { id: "contact", name: "Bizimlə Əlaqə", icon: "https://img.icons8.com/?size=100&id=pHLee504uOZJ&format=png&color=000000" },
-    { id: "training", name: "Təlim", icon: "https://img.icons8.com/?size=100&id=49453&format=png&color=000000" }
+    { id: "training", name: "Təlim", icon: "https://img.icons8.com/?size=100&id=49453&format=png&color=000000" },
+    { id: "food", name: "Kənd Məhsulları", icon: "https://img.icons8.com/?size=100&id=B0xSipajIJQ8&format=png&color=000000" }
   ];
 
   return (
@@ -63,7 +64,7 @@ const Header = () => {
               <span className="char slide-right">GROUP</span>
             </h1>
             <p className="hero-description fade-in">
-              Sizin üçün ən sürətli, keyfiyyətli və müasir velosipedləri təqdim edirik.
+              Ehtiyacınız olan hər sahədə üstün xidmət və müasir standartların kəsişmə nöqtəsi.
             </p>
 
             <div className="hero-stats fade-up">

@@ -3,16 +3,15 @@ import Header from './components/Header';
 import './App.css';
 import Training from './components/Training';
 
-// Komponentləri Lazy olaraq import edirik
 const ElectronBcycle = lazy(() => import('./components/ElectronBcycle'));
 const PresentBcycle = lazy(() => import('./components/PresentBcycle'));
 const WoltSigning = lazy(() => import('./components/WoltSigning'));
 const Details = lazy(() => import('./components/Details'));
 const Contact = lazy(() => import('./components/Contact'));
 const About = lazy(() => import('./components/About'));
+const Foods = lazy(() => import('./components/Foods'));
 const Playstation = lazy(() => import('./components/Playstation'));
 
-// Yüklənmə zamanı görünəcək sadə bir placeholder (istəyə görə spinner qoya bilərsən)
 const PageLoader = () => (
   <div style={{ height: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#00ff00' }}>
    <div className="omar-loader-container">
@@ -78,6 +77,14 @@ function App() {
           <section id="training">
             <Training />
           </section>
+
+          <section id="food">
+            <Foods />
+          </section>
+          
+   
+          
+     
 
         </Suspense>
       </main>

@@ -1,0 +1,621 @@
+/* ==========================================================================
+   FOOD SECTION STYLES - REMASTERED
+   ========================================================================== */
+
+/* ƏSAS BÖLMƏ (Desktop üçün dəyişmir) */
+.food-section {
+    padding: 100px 0;
+    min-height: 100vh;
+    background: #050a05;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   MOBİL ÜÇÜN "WOW" FON DİZAYNI (Tam Aydın və Fixed)
+   ========================================================================== */
+@media (max-width: 650px) {
+    .food-section {
+        /* Gradienti ultra şəffaf edirik ki, şəkil təmiz görünsün */
+        background: 
+            linear-gradient(180deg, 
+                rgba(5, 10, 5, 0.4) 0%,   /* Çox şəffaf tünd yaşıl */
+                rgba(5, 10, 5, 0.1) 50%,  /* Mərkəzdə demək olar ki, yoxdur */
+                rgba(5, 10, 5, 0.4) 100%), /* Yenidən şəffaf tünd yaşıl */
+            url('/kend.png') no-repeat;
+        
+        /* 🔥 Şəkil Dağılmasın Deyə Ölçü Tənzimlənməsi: 🔥 */
+        background-size: cover;        /* Ekranı tam doldurur, nisbəti qoruyur */
+        background-position: center top; /* Şəklin ən vacib hissəsini (üstünü) mərkəzləyir */
+        
+        /* 🔥 "Ureyin istediyi" Fixed Effekti: 🔥 */
+        /* QEYD: Bəzi köhnə iOS cihazlarda bu hələ də problem ola bilər, 
+           amma müasir telefonların 90%-də işləyəcək. */
+        background-attachment: fixed !important;
+    }
+
+    /* 🔥 O tünd "::before" qatını SİLİRİK! 🔥 */
+    /* Əvvəlki kodda bu qat şəkli tamamilə bağlayırdı. */
+    .food-section::before {
+        content: none; /* Bu qatı ləğv edirik */
+    }
+}
+
+.food-title {
+    font-size: clamp(30px, 5vw, 60px);
+    color: #fff;
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: 900;
+    position: relative;
+    z-index: 2;
+}
+
+
+.food-title span {
+    background: linear-gradient(90deg, #4caf50, #ccff00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/* 1. BAŞLIQ - QIZILI VƏ YAŞILIN VƏHDƏTİ */
+.food-title {
+    background: rgba(10, 30, 10, 0.4); 
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(204, 255, 0, 0.2); /* Neon sarımtıl-yaşıl kənar */
+    color: #fff;
+    text-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+    border: 1px solid green;
+    border-radius: 14px;
+}
+
+.food-title span {
+    /* Daha kəskin və parlaq bir keçid */
+    background: linear-gradient(90deg, #ccff00 0%, #4caf50 100%);
+    -webkit-background-clip: text;
+    filter: drop-shadow(0 0 10px rgba(204, 255, 0, 0.5));
+}
+
+/* 2. CARD BODY: RƏNG VƏ KONTRAST REMASTERED */
+.food-card-body {
+    background: rgba(5, 20, 5, 0.7) !important; /* Tünd zümrüd tonu */
+    backdrop-filter: blur(25px) saturate(200%);
+    border-top: 2px solid #4caf50; /* Kartın üstündə parlaq yaşıl xətt */
+}
+
+/* 3. MƏTN RƏNGLƏRİ (BOZUN ƏVƏZİNƏ) */
+.food-card-body h3 {
+    /* "Champagne White" - Saf ağ yox, çox yüngül qızılıya çalan parlaq rəng */
+    color: #fdfffc; 
+    text-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.food-card-body p {
+    /* "Mint Cream" - Çox açıq yaşıl-ağ tonu, bozdan qat-qat canlıdır */
+    color: #f0fff4; 
+    font-weight: 600;
+    line-height: 1.7;
+    /* Blur üstündə oxunurluğu artırmaq üçün */
+    background: rgba(0, 0, 0, 0.2);
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+/* 4. CARD HOVER - RƏNG PARTLAYIŞI */
+.food-card:hover {
+    border-color: #ccff00;
+    box-shadow: 0 0 30px rgba(204, 255, 0, 0.2);
+}
+
+/* GRID SİSTEMİ */
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* CARD DİZAYNI & FADE-IN */
+.food-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Bütün kartlar eyni hündürlükdə */
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    animation: premiumFadeIn 1s ease forwards;
+}
+
+.food-card:hover {
+    transform: translateY(-12px);
+    border-color: #4caf50;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 20px rgba(76, 175, 80, 0.1);
+}
+
+/* SLIDER & IMAGE PROBLEM FIXED */
+.food-image-box {
+    height: 280px; 
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+.food-swiper {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.food-swiper-slide {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.food-swiper img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* Şəkli tam doldurur */
+    object-position: top center !important; /* Məhsulun başı görünsün */
+    display: block;
+    transition: 0.8s ease;
+}
+
+.food-card:hover .food-swiper img {
+    transform: scale(1.1); /* Hover edəndə şəkil böyüsün */
+}
+
+/* BADGE */
+.organic-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(76, 175, 80, 0.9);
+    color: white;
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 800;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* CARD BODY & TEXT */
+.food-card-body {
+    padding: 30px 25px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Düyməni həmişə aşağı sıxır */
+}
+
+.food-card-body h3 {
+    color: #fff;
+    font-size: 21px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    min-height: 52px; /* Başlıqlar eyni hizada başlasın */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.food-card-body p {
+    color: #94a3b8;
+    font-size: 14.5px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+/* WHATSAPP DÜYMƏSİ - FIXED */
+.food-wp-btn {
+    width: 100%;
+    height: 55px; /* Sabit hündürlük */
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    border: none;
+    border-radius: 18px;
+    color: white;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.food-wp-btn:hover {
+    filter: brightness(1.15);
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) { .food-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 900px) { .food-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 650px) { 
+    .food-grid { 
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+    .food-image-box { height: 320px; }
+}
+
+/* ANİMASİYALAR */
+@keyframes premiumFadeIn {
+    0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* SWIPER CUSTOM */
+.swiper-button-next, .swiper-button-prev {
+    color: #4caf50 !important;
+    transform: scale(0.6);
+}
+
+.swiper-pagination-bullet-active {
+    background: #4caf50 !important;
+}
+/* ==========================================================================
+   ULTRA KREATIV: THE DARK GRAVITY & LIGHT RAYS
+   ========================================================================== */
+
+.food-title {
+    font-size: clamp(45px, 10vw, 100px); /* Nəhəng və cəsarətli ölçü */
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 100px;
+    text-transform: uppercase;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    letter-spacing: -5px; /* Hərflər bir-birinə çox yaxın - modern stil */
+    perspective: 1000px; /* 3D effekti üçün */
+    transform-style: preserve-3d;
+}
+
+.food-title span {
+    display: inline-block;
+    color: #4caf50;
+    position: relative;
+    letter-spacing: 2px;
+    /* Yazının daxili teksturası */
+    background: linear-gradient(180deg, #fff 30%, #4caf50 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* 3D asılma animasiyası */
+    animation: floating3D 5s ease-in-out infinite;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+}
+
+/* YAZININ ARXASINDAKI "GHOST" (SAYƏ) EFFEKTİ */
+.food-title::after {
+    content: "TƏBİƏTDƏN SÜFRƏNİZƏ";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateZ(-50px);
+    width: 100%;
+    color: rgba(255, 255, 255, 0.02);
+    -webkit-text-stroke: 1px rgba(76, 175, 80, 0.1);
+    font-size: 1.1em;
+    z-index: -1;
+    white-space: nowrap;
+}
+
+/* --- ANİMASİYALAR --- */
+
+/* 1. 3D Floating - Başlıq havada rəqs edir */
+@keyframes floating3D {
+    0%, 100% {
+        transform: rotateX(10deg) rotateY(-10deg) translateY(0);
+    }
+    50% {
+        transform: rotateX(-15deg) rotateY(15deg) translateY(-20px);
+    }
+}
+
+/* 2. Hərflərin arxasından keçən işıq sızması (Light Sweep) */
+.food-title span::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(204, 255, 0, 0.2), 
+        transparent
+    );
+    transform: skewX(-45deg);
+    animation: lightSweep 4s fadin infinite;
+}
+
+@keyframes lightSweep {
+    0% { left: -150%; }
+    50% { left: 150%; }
+    100% { left: 150%; }
+}
+
+/* HOVER EDƏNDƏ: HƏRFLƏRİN ARALANMASI VƏ RƏNG PARTLAYIŞI */
+.food-title:hover {
+    letter-spacing: 10px; /* Brutal keçid */
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.food-title:hover span {
+    background: linear-gradient(180deg, #ccff00 0%, #4caf50 100%);
+    -webkit-background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(76, 175, 80, 0.5));
+    animation-play-state: paused; /* Hover edəndə dayansın ki, oxunsun */
+}
+
+/* MOBİL ÜÇÜN */
+@media (max-width: 650px) {
+    .food-title {
+        font-size: 40px;
+        letter-spacing: -2px;
+    }
+    .food-title:hover {
+        letter-spacing: 2px;
+    }
+}
+/* ==========================================================================
+   THE CYBER-GREEN INTERACTIVE BUTTON (THREE.JS STYLE)
+   ========================================================================== */
+
+.food-wp-btn {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background: #0a0f0a; /* Tünd baza */
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    border-radius: 12px;
+    color: #fff;
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d; /* 3D effekti üçün */
+    box-shadow: 
+        0 10px 20px rgba(0,0,0,0.4),
+        inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* DÜYMƏNİN İÇİNDƏKİ ENERJİ AXINI (LIQUID ENERGY) */
+.food-wp-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(76, 175, 80, 0.4),
+        rgba(204, 255, 0, 0.2),
+        transparent
+    );
+    transition: none;
+    z-index: 1;
+}
+
+/* ARXADAKİ NEON DOĞRAMASI (GLOW) */
+.food-wp-btn::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, #4caf50, #ccff00, #25d366, #4caf50);
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border-radius: 14px;
+}
+
+/* HOVER EFFECT - THE "WOW" MOMENT */
+.food-wp-btn:hover {
+    transform: translateY(-5px) rotateX(10deg) scale(1.02); /* 3D qabağa çıxma */
+    border-color: rgba(76, 175, 80, 0.8);
+    color: #fff;
+    box-shadow: 
+        0 15px 30px rgba(37, 211, 102, 0.3),
+        0 0 20px rgba(76, 175, 80, 0.2);
+}
+
+.food-wp-btn:hover::after {
+    opacity: 0.6;
+    animation: borderRotate 3s linear infinite;
+}
+
+.food-wp-btn:hover::before {
+    left: 100%;
+    transition: all 0.8s ease;
+}
+
+/* İKON VƏ MƏTNİN HƏRƏKƏTİ */
+.food-wp-btn svg {
+    font-size: 20px;
+    filter: drop-shadow(0 0 5px #25d366);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 2;
+}
+
+.food-wp-btn span {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+.food-wp-btn:hover svg {
+    transform: scale(1.3) rotate(-15deg);
+}
+
+/* ACTIVE (CLICK) EFFECT */
+.food-wp-btn:active {
+    transform: translateY(2px) scale(0.98);
+}
+
+/* ANİMASİYALAR */
+@keyframes borderRotate {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* DÜYMƏ ÜZƏRİNDƏKİ İNCƏ SKANER XƏTTİ (SCANLINE) */
+.food-wp-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 1px,
+        rgba(255, 255, 255, 0.03) 2px
+    );
+    pointer-events: none;
+}
+/* ==========================================================================
+   THE HOLO-MODERN CARD BODY
+   ========================================================================== */
+
+.food-card-body {
+    padding: 35px 25px;
+    position: relative;
+    background: linear-gradient(
+        180deg, 
+        rgba(255, 255, 255, 0.03) 0%, 
+        rgba(76, 175, 80, 0.01) 100%
+    );
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ÜSTDƏKİ MODERN DEKORATİV XƏTT */
+.card-top-line {
+    width: 40px;
+    height: 2px;
+    background: #4caf50;
+    margin-bottom: 15px;
+    box-shadow: 0 0 10px #4caf50;
+    transition: width 0.5s ease;
+}
+
+.food-card:hover .card-top-line {
+    width: 100%; /* Hover edəndə xətt uzanır */
+}
+
+/* KATEQORİYA YAZISI */
+.category-label {
+    display: block;
+    font-size: 10px;
+    color: #4caf50;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    opacity: 0.8;
+}
+
+/* BAŞLIQ - THREE JS STYLE TEXTURE */
+.food-card-body h3 {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.3;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.4s ease;
+}
+
+.food-card:hover .food-card-body h3 {
+    letter-spacing: 0.5px;
+    background: linear-gradient(to right, #fff, #4caf50);
+    -webkit-background-clip: text;
+}
+
+/* MƏTN KONTEYNERİ VƏ GRADİENT MASK */
+.desc-container {
+    position: relative;
+    max-height: 100px;
+    overflow: hidden;
+    /* Mətnin aşağısı yavaşca itir (fade out) */
+    -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
+}
+
+.food-card-body p {
+    color: rgba(148, 163, 184, 0.9);
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: 400;
+    text-align: left;
+}
+
+/* KARTIN ARXASINDAKI GİZLİ PARILTI (MOUSE FOLLOW EFFEKTİ KİMİ) */
+.food-card-body::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle, 
+        rgba(76, 175, 80, 0.05) 0%, 
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.food-card:hover .food-card-body::before {
+    opacity: 1;
+    animation: rotateGradient 10s linear infinite;
+}
+
+@keyframes rotateGradient {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* INFO WRAPPER Z-INDEX */
+.food-info-wrapper {
+    position: relative;
+    z-index: 1;
+}
