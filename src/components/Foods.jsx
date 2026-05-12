@@ -131,10 +131,22 @@ const Food = () => {
     }
   ];
 
-  const handleWhatsApp = (product) => {
-    const phoneNumber = "+994509998281";
-    const message = `Salam OMAR GROUP! Məhsul: ${product.title}`;
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+const handleWhatsApp = (product) => {
+    const phoneNumber = "+994509998281"; // OMAR GROUP nömrəsi
+    
+    // Mesajın formatlanması (Daha dolğun və səliqəli)
+    const message = 
+      `Salam OMAR GROUP! 👋\n` +
+      `Aşağıdakı məhsul haqqında məlumat almaq istəyirəm:\n\n` +
+      `🆔 *Məhsul ID:* #${product.id}\n` +
+      `🍀 *Adı:* ${product.title}\n` +
+      `📂 *Kateqoriya:* ${product.category}\n` +
+      `📝 *Təsvir:* ${product.desc}\n\n` +
+      `Hörmətlə, saytınızın müştərisi.`;
+
+    // URL-i kodlaşdır və WhatsApp-ı aç
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, '_blank');
   };
 
   return (
