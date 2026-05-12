@@ -74,6 +74,107 @@
     -webkit-background-clip: text;
     filter: drop-shadow(0 0 10px rgba(204, 255, 0, 0.5));
 }
+/* NAV PANELI */
+.swiper-nav-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: rgba(10, 20, 10, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 8px 15px;
+    margin: -20px auto 10px; /* Şəkil qutusunun bir az üstünə çıxması üçün */
+    width: fit-content;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+/* NAV DÜYMƏLƏRİ */
+.nav-btn {
+    background: rgba(76, 175, 80, 0.2);
+    border: 1px solid rgba(76, 175, 80, 0.4);
+    color: #4caf50;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.nav-btn:hover {
+    background: #4caf50;
+    color: white;
+}
+
+/* 1 / 2 YAZISI */
+.custom-pagination {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    font-family: 'Inter', sans-serif;
+    min-width: 45px;
+    text-align: center;
+}
+/* Swiper-ın öz daxili rəqəm stilini sıfırla və görünən et */
+.custom-pagination.swiper-pagination-fraction {
+    position: static !important; /* Blok daxilində qalsın */
+    width: auto !important;
+    color: #ffffff !important; /* Rəqəmlər ağ olsun */
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Nav Paneli - Mövqeyi tənzimləndi */
+.swiper-nav-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background: #1a1a1a; /* Tünd fon */
+    padding: 10px 20px;
+    margin: 10px auto 15px; /* Üstdən 10px boşluq verib şəkildən aşağı saldıq */
+    width: fit-content;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Düymələr */
+.nav-btn {
+    background: #252525;
+    border: 1px solid #4caf50;
+    color: #4caf50;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20; /* Klikləməni təmin etmək üçün */
+}
+
+/* Standart oxları gizlət */
+.swiper-button-next, .swiper-button-prev {
+    display: none !important;
+}
+
+/* Aktiv rəqəm rəngi */
+.swiper-pagination-current {
+    color: #4caf50 !important;
+}
+/* SWIPER STANDART OXARINI GİZLƏT */
+.swiper-button-next, .swiper-button-prev {
+    display: none !important;
+}
 
 /* 2. CARD BODY: RƏNG VƏ KONTRAST REMASTERED */
 .food-card-body {

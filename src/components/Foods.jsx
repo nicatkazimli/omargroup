@@ -1,16 +1,15 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { FaWhatsapp, FaLeaf } from 'react-icons/fa';
+import { FaWhatsapp, FaLeaf, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
-// Swiper Styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './Foods.css';
 
 const Food = () => {
-  const products = [
+ const products = [
     { 
       id: 1, 
       title: "Cheddar Qızartma Pendiri", 
@@ -133,8 +132,8 @@ const Food = () => {
   ];
 
   const handleWhatsApp = (product) => {
-    const phoneNumber = "+994509998281"; // Bura öz nömrəni yaz
-    const message = `Salam OMAR GROUP! Sizin saytınızdan bu məhsul haqqında məlumat almaq istəyirəm:\n\n🍀 Məhsul: ${product.title}\n📂 Kateqoriya: ${product.category}`;
+    const phoneNumber = "+994509998281";
+    const message = `Salam OMAR GROUP! Məhsul: ${product.title}`;
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
@@ -142,18 +141,29 @@ const Food = () => {
     <div className="food-section">
       <div className="container">
         <h2 className="food-title">Təbiətdən <span>Süfrənizə</span></h2>
+        
         <div className="food-grid">
           {products.map((product) => (
             <div className="food-card" key={product.id}>
+              
               <div className="food-image-box">
                 <Swiper
                   modules={[Navigation, Pagination, Autoplay]}
-                  pagination={{ clickable: true }}
-                  navigation={true}
+                  // Oxları və paginationu birbaşa bu class-lara bağlayırıq
+                  pagination={{ 
+                    el: `.pag-${product.id}`,
+                    type: 'fraction',
+                    renderFraction: (currentClass, totalClass) => {
+                        return `<span class="${currentClass}"></span> / <span class="${totalClass}"></span>`;
+                    }
+                  }}
+                  navigation={{
+                    prevEl: `.p-btn-${product.id}`,
+                    nextEl: `.n-btn-${product.id}`,
+                  }}
                   slidesPerView={1}
-                  spaceBetween={0}
                   loop={product.images.length > 1}
-                  autoplay={{ delay: 3500, disableOnInteraction: false }}
+                  autoplay={{ delay: 4000 }}
                   className="food-swiper"
                 >
                   {product.images.map((img, i) => (
@@ -162,20 +172,27 @@ const Food = () => {
                     </SwiperSlide>
                   ))}
                 </Swiper>
+                
                 <div className="organic-badge">
                   <FaLeaf /> {product.category}
                 </div>
               </div>
 
+              {/* NAV PANEL - Biraz daha aşağı salındı */}
+              <div className="swiper-nav-panel">
+                <button className={`nav-btn p-btn-${product.id}`}>
+                  <FaChevronLeft />
+                </button>
+                <div className={`custom-pagination pag-${product.id}`}></div>
+                <button className={`nav-btn n-btn-${product.id}`}>
+                  <FaChevronRight />
+                </button>
+              </div>
+
               <div className="food-card-body">
-                <div>
-                  <h3>{product.title}</h3>
-                  <p>{product.desc}</p>
-                </div>
-                <button 
-                  className="food-wp-btn" 
-                  onClick={() => handleWhatsApp(product)}
-                >
+                <h3>{product.title}</h3>
+                <p>{product.desc}</p>
+                <button className="food-wp-btn" onClick={() => handleWhatsApp(product)}>
                   <FaWhatsapp /> SİFARİŞ ET
                 </button>
               </div>
