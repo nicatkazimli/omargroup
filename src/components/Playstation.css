@@ -68,8 +68,8 @@
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 40px;
   overflow: hidden;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+ backdrop-filter: blur(10px) saturate(50%);
+    -webkit-backdrop-filter: blur(10px) saturate(50%);
   /* GPU dostu transition: all yazmaq qəti qadağandır! */
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
   will-change: transform; /* Brauzerə hərəkətə hazır olmasını pıçıldayır */
@@ -350,7 +350,7 @@
     color: #ffffff !important;
     text-align: center;
     font-weight: 900;
-    font-size: clamp(28px, 8vw, 45px); /* Mobildə avtomatik kiçilən ölçü */
+    font-size: clamp(16px, 8vw, 33px); /* Mobildə avtomatik kiçilən ölçü */
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: 15px 25px;
@@ -362,8 +362,8 @@
     border-radius: 18px;
     
     /* Şüşə effekti - arxadakı şəkli dumanlı göstərir */
-    backdrop-filter: blur(10px) saturate(150%);
-    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    backdrop-filter: blur(10px) saturate(50%);
+    -webkit-backdrop-filter: blur(10px) saturate(50%);
     
     /* Kənarlara incə parıltı (Premium toxunuş) */
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -402,7 +402,7 @@
   }
   
   .section-main-title { 
-    font-size: 34px; 
+    font-size: 24px; 
     letter-spacing: -1px;
     line-height: 1.2;
     margin-bottom: 40px;
@@ -411,7 +411,7 @@
   .blue-neon {
     display: block;
     margin-top: 10px;
-    font-size: 40px;
+    font-size: 30px;
   }
 
   .section-main-title::after {

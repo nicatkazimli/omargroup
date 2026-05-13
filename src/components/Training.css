@@ -386,7 +386,7 @@
         /* Mobildə şəklin hündürlüyünü məcburi tənzimləyirik */
         background-position: center top !important; 
         background-size: 100% auto !important; /* Şəkli eninə görə tam oturt, hündürlüyü sərbəst burax */
-        
+         background-attachment: fixed !important; 
         padding: 50px 20px !important;
   }
   .training-grid {
