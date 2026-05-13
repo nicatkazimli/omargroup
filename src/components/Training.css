@@ -381,6 +381,7 @@
 /* Mobil tənzimləmə */
 @media (max-width: 768px) {
   .training-section {
+    margin-top: -20px;
     padding: 60px 5% 80px;
       /* Mobildə 'fixed' bəzən şəkli qırıq-qırıq göstərir. 
            Əgər şəkil hələ də pis görünsə, 'fixed'i 'scroll' ilə əvəz et. */

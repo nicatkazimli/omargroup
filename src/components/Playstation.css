@@ -356,8 +356,8 @@
     border-radius: 18px;
     
     /* Şüşə effekti - arxadakı şəkli dumanlı göstərir */
-    backdrop-filter: blur(10px) saturate(50%);
-    -webkit-backdrop-filter: blur(10px) saturate(50%);
+    backdrop-filter: blur(10px) saturate(20%);
+    -webkit-backdrop-filter: blur(10px) saturate(20%);
     
     /* Kənarlara incə parıltı (Premium toxunuş) */
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -396,6 +396,7 @@
     padding: 5px;
     border: 1px solid aqua;
     border-radius: 10px;
+    background-color:rgb(68, 68, 97) ;
 }
   
   .ps-slider { 
