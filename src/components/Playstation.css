@@ -312,37 +312,31 @@
 .ps-rental-section {
     position: relative;
     overflow: hidden;
-    padding: 80px 0 !important; /* Məzmunun şəkil üzərində rahat qalması üçün padding */
-
-    /* 🔥 Şəkli bərpa edən əsas blok */
-   
-    background-repeat: no-repeat !important;
-    
-    /* 1. Fixed effekti üçün ən stabil ayar */
+    padding: 80px 0 !important;
     background-attachment: fixed !important; 
-    
-    /* 2. Şəklin ölçüsünü 'contain' və 'cover' arasında balanslayırıq */
     background-size: cover !important; 
-    
-    /* 3. Şəkli mərkəzə gətiririk ki, kənarlar yox, əsas mövzu görünsün */
     background-position: center center !important; 
-
-    /* 4. Şəkil çox açıq rəngdədirsə, üzərinə yüngül tündlük verək (Mətnlər görünsün) */
     background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: overlay;
+    /* Şəkli ana konteynerə də əlavə edirik ki, aşağı düşdükcə itməsin */
+    background-image: url('https://i.pinimg.com/736x/3f/4d/f9/3f4df9aa018b1b3192d75ef2e33c0c59.jpg') !important;
 }
 
-/* 📱 MOBİL ÜÇÜN ÖZƏL AYAR (Fixed problemi həlli) */
+/* 🔥 SƏNİN CSS-İ POZMADAN ƏLAVƏ OLUNAN HİSSƏ */
+.ps-rental-section .card, 
+.ps-rental-section div[class*="card"] {
+    background: transparent !important; /* Kartların qara fonunu silirik */
+}
+
 @media (max-width: 768px) {
     .ps-rental-section {
-        /* Mobildə 'fixed' bəzən şəkli qırıq-qırıq göstərir. 
-           Əgər şəkil hələ də pis görünsə, 'fixed'i 'scroll' ilə əvəz et. */
-         background-image: url('https://i.pinimg.com/736x/3f/4d/f9/3f4df9aa018b1b3192d75ef2e33c0c59.jpg') !important;
-        /* Mobildə şəklin hündürlüyünü məcburi tənzimləyirik */
+        background-image: url('https://i.pinimg.com/736x/3f/4d/f9/3f4df9aa018b1b3192d75ef2e33c0c59.jpg') !important;
         background-position: center top !important; 
-        background-size: 100% auto !important; /* Şəkli eninə görə tam oturt, hündürlüyü sərbəst burax */
-        
+        background-size: 100% auto !important; 
         padding: 50px 20px !important;
+
+        /* iPhone-da şəklin görünməsi üçün məcburi 'scroll' (ölçünü pozmur) */
+        background-attachment: scroll !important;
     }
 }
 .section-main-title {
@@ -376,7 +370,7 @@
 }
 
 /* 📱 Mobil üçün xüsusi optimizasiya */
-@media (max-width: 650px) {
+@media (max-width: 768px) {
     .section-main-title {
         padding: 12px 20px;
         backdrop-filter: blur(8px); /* Mobildə daha yüngül duman (performans üçün) */
