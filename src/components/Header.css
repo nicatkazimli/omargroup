@@ -1084,8 +1084,8 @@ body {
 }
 /* 1. ROLE (Kiçik yuxarı yazı) */
 .hero-content .role {
-  width: 330px;
-  margin-left: -20px;
+  width: 300px;
+  margin-left: -30px;
     display: inline-block;
     padding: 6px 15px;
     border-radius: 50px;

@@ -396,7 +396,13 @@
     
     
   }
-
+.feature-item{
+   backdrop-filter: blur(10px) saturate(50%);
+    -webkit-backdrop-filter: blur(10px) saturate(50%);
+    padding: 5px;
+    border: 1px solid aqua;
+    border-radius: 10px;
+}
   
   .ps-slider { 
     height: 300px; 
