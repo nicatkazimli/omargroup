@@ -332,6 +332,8 @@
         padding: 35px 20px;
         border-radius: 30px;
         /* Mobildə mətni mərkəzləyib kənarlardan ayırırıq */
+        backdrop-filter: blur(10px) saturate(50%);
+    -webkit-backdrop-filter: blur(10px) saturate(50%);
     }
 
     /* Arxa fondakı duman qatı */
@@ -391,5 +393,6 @@
   }
   .training-grid {
     gap: 25px;
+    
   }
 }
