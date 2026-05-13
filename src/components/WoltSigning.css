@@ -235,23 +235,14 @@
   .wolt-full-page {
     padding: 30px 15px;
    /* Əvvəlki rəngi fallback olaraq saxlayırıq */
-    background-color: #1a1a1a !important; 
-    
-    /* Şəkil ayarları */
-    background-image: url('https://i.pinimg.com/1200x/82/2a/ec/822aec2a4a2ed329556146e689f6fa4f.jpg') !important;
-    background-repeat: no-repeat !important;
-    
-    /* 1. Şəkli yuxarı mərkəzə sabitleyirik */
-    background-position: top center !important; 
-    
-    /* 2. Şəkli sağdan və soldan ekrana tam yapışdırır (BOŞLUQ QALMIR) */
-    background-size: cover !important; 
-    
-    /* 3. Şəklin kartın kənarlarından daşmaması üçün */
-    overflow: hidden !important;
-    
-    /* Ehtiyac varsa kartın daxili padding-ini sıfırla ki, şəkil künclərə dəysin */
-    padding: 0 !important;
+     /* Mobildə 'fixed' bəzən şəkli qırıq-qırıq göstərir. 
+           Əgər şəkil hələ də pis görünsə, 'fixed'i 'scroll' ilə əvəz et. */
+         background-image: url('https://i.pinimg.com/1200x/7a/56/4b/7a564b2f76cc5508e2a0996ca2f6c590.jpg') !important;
+        /* Mobildə şəklin hündürlüyünü məcburi tənzimləyirik */
+        background-position: center top !important; 
+        background-size: 100% auto !important; /* Şəkli eninə görə tam oturt, hündürlüyü sərbəst burax */
+        background-attachment: fixed !important; 
+        padding: 50px 20px !important;
   }
 
   .wolt-main-grid {
@@ -574,10 +565,26 @@
 
         border-radius: 22px;
 
-        font-size: clamp(28px, 8vw, 42px);
+        font-size: clamp(14px, 6vw, 22px);
 
         -webkit-backdrop-filter: blur(14px);
         backdrop-filter: blur(14px);
+    }
+    .mini-feat{
+       backdrop-filter: blur(10px) saturate(50%);
+    -webkit-backdrop-filter: blur(10px) saturate(50%);
+    padding: 5px;
+    border: 1px solid aqua;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    }
+    .footer-note{
+       backdrop-filter: blur(10px) saturate(50%);
+    -webkit-backdrop-filter: blur(10px) saturate(50%);
+    padding: 5px;
+    border: 1px solid aqua;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
     }
 }
 
@@ -590,12 +597,13 @@
     #fff, 
     #00c2e8
   );
-  background-size: 200% auto;
+  background-size: 150% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   /* Yazının içindəki işıq hərəkəti */
   animation: shineText 4s linear infinite;
   display: inline-block;
+  font-size: 25px;
 }
 
 /* 🔥 Kreativ Hərəkətli Underline */
