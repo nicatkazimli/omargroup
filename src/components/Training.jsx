@@ -154,7 +154,7 @@ const Training = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          MOTO <span className="neon-cyan">SÜRÜŞ</span> AKADEMİYASI
+           <span className="neon-cyan">MOTO SÜRÜŞ AKADEMİYASI</span> 
         </motion.h2>
         <p className="header-subtitle">Peşəkar təlimçilərimizlə sıfırdan ustadlığa doğru addımlayan tələbələrimizin nəticələri</p>
       </div>

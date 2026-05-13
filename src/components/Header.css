@@ -487,7 +487,7 @@ body {
 
 /* Arxa fon */
 .fixed-menu-overlay {
-  background: linear-gradient(135deg, #020617, #0f172a, #0ea5e9) !important;
+  background: linear-gradient(135deg, #133a1c, #0f172a, #0ea5e9) !important;
 }
 
 /* Nav card */
@@ -526,13 +526,32 @@ body {
 
   /* Arxa fon (overlay açılan zaman) */
   .fixed-menu-overlay {
-    background: linear-gradient(135deg, #020617, #0f172a, #0ea5e9) !important;
+ /* Əvvəlki rəngi fallback olaraq saxlayırıq */
+    background-color: #1a1a1a !important; 
+    
+    /* Şəkil ayarları */
+    background-image: url('https://i.pinimg.com/736x/8c/95/2a/8c952ae964ab9d9fab21e8bb2f46b708.jpg') !important;
+    background-repeat: no-repeat !important;
+    
+    /* 1. Şəkli yuxarı mərkəzə sabitleyirik */
+    background-position: top center !important; 
+    
+    /* 2. Şəkli sağdan və soldan ekrana tam yapışdırır (BOŞLUQ QALMIR) */
+    background-size: cover !important; 
+    
+    /* 3. Şəklin kartın kənarlarından daşmaması üçün */
+    overflow: hidden !important;
+    
+    /* Ehtiyac varsa kartın daxili padding-ini sıfırla ki, şəkil künclərə dəysin */
+    padding: 0 !important;
   }
 
   /* Nav card (gradient glass style) */
   .nav-card {
-    background: linear-gradient(135deg, rgba(129, 105, 157, 0.971), rgba(2,6,23,0.4)) !important;
-    border: 1px solid rgba(14,165,233,0.4) !important;
+    margin-left: 33px;
+    width: 320px;
+    background: linear-gradient(135deg, rgba(24, 7, 43, 0.971), rgba(83, 35, 138, 0.971)) !important;
+    border: 1px solid rgba(226, 12, 51, 0.4) !important;
     backdrop-filter: blur(12px);
   }
 
@@ -1033,12 +1052,26 @@ body {
 
 /* --- 2. Hero Section --- */
 .hero {
-  height: 100vh;
-  width: 100%;
-   background: radial-gradient(circle at top right, #051524, #13051e) !important;
-  position: relative;
-  overflow: hidden;
+/* Əvvəlki rəngi fallback olaraq saxlayırıq */
+    background-color: #1a1a1a !important; 
+    
+    /* Şəkil ayarları */
+    background-image: url('https://i.pinimg.com/1200x/f1/6e/45/f16e455977e0b707cde64d801b30f945.jpg') !important;
+    background-repeat: no-repeat !important;
+    
+    /* 1. Şəkli yuxarı mərkəzə sabitleyirik */
+    background-position: top center !important; 
+    
+    /* 2. Şəkli sağdan və soldan ekrana tam yapışdırır (BOŞLUQ QALMIR) */
+    background-size: cover !important; 
+    
+    /* 3. Şəklin kartın kənarlarından daşmaması üçün */
+    overflow: hidden !important;
+    
+    /* Ehtiyac varsa kartın daxili padding-ini sıfırla ki, şəkil künclərə dəysin */
+    padding: 0 !important;
 }
+
 
 .hero::before {
   content: "";
@@ -1048,6 +1081,65 @@ body {
   opacity: 0.15;
   animation: rotateBackground 120s linear infinite;
   z-index: 1;
+}
+/* 1. ROLE (Kiçik yuxarı yazı) */
+.hero-content .role {
+  width: 400px;
+    display: inline-block;
+    padding: 6px 15px;
+    border-radius: 50px;
+    
+    /* Yüngül blur və şəffaflıq */
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #4caf50 !important; /* Yaşıl tonunu vurğulayırıq */
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* 2. MAIN TITLE (OMAR GROUP) */
+.main-title {
+    /* Başlığın özünə birbaşa blur vermirik (hərflər bulanmasın), 
+       amma arxasında incə bir duman kölgəsi yaradırıq */
+    text-shadow: 
+        0 0 20px rgba(0, 0, 0, 0.6),
+        0 10px 40px rgba(0, 0, 0, 0.4);
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+/* 3. HERO DESCRIPTION (Əsas mətni oxunurlu edək) */
+.hero-description {
+    display: block;
+    padding: 15px;
+    border-radius: 15px;
+    
+    /* 🔥 Mətni qabağa çıxaran "Double Blur" paneli */
+    background: rgba(0, 0, 0, 0.2) !important; /* Çox yüngül tündlük */
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px);
+    
+    color: #f0f0f0 !important;
+    font-size: 16px;
+    max-width: 90%; /* Mobildə tam sıxılmasın */
+    line-height: 1.6;
+    border-left: 3px solid #4caf50; /* Kreativ yaşıl xətt */
+}
+
+/* 4. MOBİL ÜÇÜN XÜSUSİ AYARLAR */
+@media (max-width: 650px) {
+    .hero-content {
+        padding: 0 20px;
+        /* Bütün konteynerin arxasına çox yüngül bir radial duman verə bilərik */
+        background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, transparent 80%);
+    }
+
+    .main-title .char {
+        font-size: 45px !important; /* Mobil ölçüsü */
+    }
 }
 
 @keyframes rotateBackground { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }

@@ -234,11 +234,30 @@
 @media (max-width: 768px) {
   .wolt-full-page {
     padding: 30px 15px;
+   /* Əvvəlki rəngi fallback olaraq saxlayırıq */
+    background-color: #1a1a1a !important; 
+    
+    /* Şəkil ayarları */
+    background-image: url('https://i.pinimg.com/1200x/82/2a/ec/822aec2a4a2ed329556146e689f6fa4f.jpg') !important;
+    background-repeat: no-repeat !important;
+    
+    /* 1. Şəkli yuxarı mərkəzə sabitleyirik */
+    background-position: top center !important; 
+    
+    /* 2. Şəkli sağdan və soldan ekrana tam yapışdırır (BOŞLUQ QALMIR) */
+    background-size: cover !important; 
+    
+    /* 3. Şəklin kartın kənarlarından daşmaması üçün */
+    overflow: hidden !important;
+    
+    /* Ehtiyac varsa kartın daxili padding-ini sıfırla ki, şəkil künclərə dəysin */
+    padding: 0 !important;
   }
 
   .wolt-main-grid {
     grid-template-columns: 1fr;
     gap: 35px;
+  
   }
 
   /* 1. Başlığın nizamlanması */
@@ -326,6 +345,240 @@
   color: white;
   position: relative;
   display: inline-block;
+}
+/* =========================================================
+   WOLT INFO TEXT
+========================================================= */
+
+.wolt-official-text {
+    position: relative;
+    padding: 22px;
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+
+    overflow: hidden;
+}
+
+.wolt-official-text p {
+    color: #dbe7f3;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.wolt-official-text p:last-child {
+    margin-bottom: 0;
+}
+
+.wolt-official-text strong {
+    color: #ffffff;
+    font-weight: 800;
+}
+
+/* =========================================================
+   OFFER CARD
+========================================================= */
+
+.wolt-offer-card {
+    position: relative;
+    margin-top: 28px;
+    border-radius: 28px;
+
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+
+    overflow: hidden;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,0.22),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.offer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    padding: 24px;
+}
+
+/* =========================================================
+   PRICE DETAILS
+========================================================= */
+
+.price-details {
+    flex: 1;
+}
+
+.price-label {
+    display: block;
+    color: #9fb3c8;
+    font-size: 13px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.price-numbers {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.price-old {
+    color: rgba(255,255,255,0.45);
+    font-size: 22px;
+    font-weight: 700;
+    text-decoration: line-through;
+}
+
+.price-new {
+    color: #ffffff;
+    font-size: 34px;
+    font-weight: 900;
+
+    text-shadow:
+        0 0 12px rgba(255,255,255,0.15);
+}
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.offer-divider {
+    width: 1px;
+    align-self: stretch;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(255,255,255,0.15),
+            transparent
+        );
+}
+
+/* =========================================================
+   PROMO
+========================================================= */
+
+.offer-promo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 14px 18px;
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.05);
+
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.promo-icon {
+    width: 26px;
+    height: 26px;
+
+    color: #67e8f9;
+
+    filter:
+        drop-shadow(0 0 10px rgba(103,232,249,0.45));
+}
+
+.promo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.promo-text strong {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.promo-text span {
+    color: #a8bfd3;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .wolt-official-text {
+        padding: 18px;
+        border-radius: 22px;
+    }
+
+    .wolt-official-text p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .wolt-offer-card {
+        border-radius: 24px;
+    }
+
+    .offer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+
+        padding: 20px;
+    }
+
+    .offer-divider {
+        width: 100%;
+        height: 1px;
+    }
+
+    .offer-promo {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .price-new {
+        font-size: 30px;
+    }
+
+    .price-old {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .wolt-hero-title {
+        width: calc(100% - 32px);
+
+        padding: 16px 18px;
+
+        border-radius: 22px;
+
+        font-size: clamp(28px, 8vw, 42px);
+
+        -webkit-backdrop-filter: blur(14px);
+        backdrop-filter: blur(14px);
+    }
 }
 
 .gradient-text {

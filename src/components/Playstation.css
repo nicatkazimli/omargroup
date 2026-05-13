@@ -309,6 +309,83 @@
     transform: scale(1.01);
   }
 }
+.ps-rental-section {
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0 !important; /* Məzmunun şəkil üzərində rahat qalması üçün padding */
+
+    /* 🔥 Şəkli bərpa edən əsas blok */
+   
+    background-repeat: no-repeat !important;
+    
+    /* 1. Fixed effekti üçün ən stabil ayar */
+    background-attachment: fixed !important; 
+    
+    /* 2. Şəklin ölçüsünü 'contain' və 'cover' arasında balanslayırıq */
+    background-size: cover !important; 
+    
+    /* 3. Şəkli mərkəzə gətiririk ki, kənarlar yox, əsas mövzu görünsün */
+    background-position: center center !important; 
+
+    /* 4. Şəkil çox açıq rəngdədirsə, üzərinə yüngül tündlük verək (Mətnlər görünsün) */
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: overlay;
+}
+
+/* 📱 MOBİL ÜÇÜN ÖZƏL AYAR (Fixed problemi həlli) */
+@media (max-width: 768px) {
+    .ps-rental-section {
+        /* Mobildə 'fixed' bəzən şəkli qırıq-qırıq göstərir. 
+           Əgər şəkil hələ də pis görünsə, 'fixed'i 'scroll' ilə əvəz et. */
+         background-image: url('https://i.pinimg.com/736x/3f/4d/f9/3f4df9aa018b1b3192d75ef2e33c0c59.jpg') !important;
+        /* Mobildə şəklin hündürlüyünü məcburi tənzimləyirik */
+        background-position: center top !important; 
+        background-size: 100% auto !important; /* Şəkli eninə görə tam oturt, hündürlüyü sərbəst burax */
+        
+        padding: 50px 20px !important;
+    }
+}
+.section-main-title {
+    /* Mətnin özü təmiz və kəskin qalsın */
+    color: #ffffff !important;
+    text-align: center;
+    font-weight: 900;
+    font-size: clamp(28px, 8vw, 45px); /* Mobildə avtomatik kiçilən ölçü */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 15px 25px;
+    
+    /* 🔥 Mobildə Duman Effekti (Backdrop Blur) */
+    position: relative;
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.2); /* Çox şəffaf tünd fon */
+    border-radius: 18px;
+    
+    /* Şüşə effekti - arxadakı şəkli dumanlı göstərir */
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    
+    /* Kənarlara incə parıltı (Premium toxunuş) */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Mobildə mətni qabartmaq üçün kölgə */
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    
+    /* Ekrana tam yapışmaması üçün marjin */
+    margin: 0 15px 30px 15px;
+}
+
+/* 📱 Mobil üçün xüsusi optimizasiya */
+@media (max-width: 650px) {
+    .section-main-title {
+        padding: 12px 20px;
+        backdrop-filter: blur(8px); /* Mobildə daha yüngül duman (performans üçün) */
+        -webkit-backdrop-filter: blur(8px);
+        
+        /* Əgər mətni bir az daha "bulanıq" görmək istəsən (çox az): */
+        /* filter: blur(0.5px); */ 
+    }
+}
 
 /* --- MOBILE RESPONSIVE --- */
 @media (max-width: 1024px) {
@@ -316,7 +393,9 @@
     grid-template-columns: 1fr;
     gap: 40px;
     padding: 0 5%;
+    
   }
+
   
   .ps-slider { 
     height: 300px; 
