@@ -55,8 +55,8 @@ const About = () => {
         animate={{ opacity: 1, y: 0 }}
         className="about-header"
       >
-        <h2 className="glitch-text">KOMANDAMIZ</h2>
-        <p>Omar Group-un gücü peşəkar komandasındadır</p>
+        <h2 className="glitch-textt">KOMANDAMIZ</h2>
+        <p className='ogp'>Omar Group-un gücü peşəkar komandasındadır</p>
       </motion.div>
 
       <div className="team-container">

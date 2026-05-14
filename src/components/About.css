@@ -314,4 +314,39 @@
 @media (max-width: 768px) {
   .about-header h2 { font-size: 2.5rem; }
   .member-card { margin-bottom: 20px; }
+  .about-section{
+     background-image: url('https://i.pinimg.com/1200x/b2/f4/7d/b2f47d4cfe0fc0e85e9bc42f5d488457.jpg') !important;
+        background-position: center top !important; 
+        background-size: 100% auto !important; 
+        padding: 50px 20px !important;
+
+        /* iPhone-da şəklin görünməsi üçün məcburi 'scroll' (ölçünü pozmur) */
+        background-attachment: scroll !important;
+  }
+.glitch-textt{
+    backdrop-filter: blur(10px) saturate(50%);
+    -webkit-backdrop-filter: blur(10px) saturate(50%);
+    padding: 5px;
+    border: 1px solid aqua;
+    border-radius: 10px;
+    background-color:rgb(49, 49, 73) ;
+}
+.ogp{
+    backdrop-filter: blur(10px) saturate(50%);
+    -webkit-backdrop-filter: blur(10px) saturate(50%);
+    padding: 5px;
+    border: 1px solid aqua;
+    border-radius: 10px;
+     background-color:rgb(49, 49, 73) ;
+    color: #00fff9;
+}
+.member-info{
+    backdrop-filter: blur(10px) saturate(50%);
+    -webkit-backdrop-filter: blur(10px) saturate(50%);
+    padding: 5px;
+    border: 1px solid rgb(87, 164, 164);
+    border-radius: 10px;
+     background-color:rgb(49, 49, 73) ;
+    color: #00fff9;
+}
 }
