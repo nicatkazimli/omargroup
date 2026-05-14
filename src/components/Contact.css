@@ -509,6 +509,7 @@
     border: 1px solid aqua;
     border-radius: 10px;
     color: rgb(255, 255, 255);
+    background-color:rgb(68, 68, 97) ;
 }
 .info-cards{
       backdrop-filter: blur(10px) saturate(50%);
@@ -517,6 +518,7 @@
     border: 1px solid aqua;
     border-radius: 10px;
     color: rgb(255, 255, 255);
+    background-color:rgb(68, 68, 97) ;
 }
 
 }
